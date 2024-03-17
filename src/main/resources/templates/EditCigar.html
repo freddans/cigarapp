@@ -3,8 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <h1>edit</h1>
 </head>
 <body>
-
+<h1 th:text="${message}"></h1>
+<ul>
+    <li th:each="cigar : ${list}">
+        <p></p>
+        <div>
+            <span th:text="${cigar.name}"></span>
+        </div>
+    </li>
+</ul>
 </body>
 </html>

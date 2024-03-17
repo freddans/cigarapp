@@ -3,20 +3,16 @@ package com.fredrik.cigarapp.controller;
 import ch.qos.logback.classic.Logger;
 import com.fredrik.cigarapp.model.Cigar;
 import com.fredrik.cigarapp.service.CigarService;
-import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 public class CigarController {
@@ -72,7 +68,32 @@ public class CigarController {
     @GetMapping("/celebrities")
     public ResponseEntity<List<String>> getFavoriteOf() {
         List<String> favoriteCigars = service.getAllFavoriteOf();
+
+        // sort by name:
+        Collections.sort(favoriteCigars, new Comparator<String>() {
+            @Override
+            public int compare(String cigar1, String cigar2) {
+                String[] part1 = cigar1.split(":");
+                String[] part2 = cigar2.split(":");
+
+                // Compare brand names
+                return part1[2].trim().compareTo(part2[2].trim());
+            }
+        });
+
+
         return ResponseEntity.ok(favoriteCigars);
     }
+    @GetMapping("/edit")
+    public String edit(Model model) {
+        List<Cigar> cigarList = new ArrayList<>();
+        for (Cigar cigar : service.getAllCigars()) {
+            cigarList.add(cigar);
+        }
+        model.addAttribute("list", cigarList);
+
+        return "EditCigar";
+    }
+
 
 }
