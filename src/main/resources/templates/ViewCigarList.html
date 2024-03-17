@@ -6,13 +6,17 @@
 </head>
 <body>
 <h1 th:text="${message}"></h1>
-<ul>
-    <li th:each="cigar : ${list}">
+<table>
+    <tr th:each="cigar : ${list}">
+        <div>
         <p>Brand: </p>
         <span th:text="${cigar.brand}"></span>
+        </div>
+        <div>
         <p>Name: </p>
         <span th:text="${cigar.name}"></span>
-    </li>
-</ul>
+        </div>
+    </tr>
+</table>
 </body>
 </html>
