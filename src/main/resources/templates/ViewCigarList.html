@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cigar List</title>
+</head>
+<body>
+<h1 th:text="${message}"></h1>
+<ul>
+    <li th:each="cigar : ${list}" th:with="${cigar}">
+        <p>Brand: </p>
+        <span th:text="${cigar.brand}"></span>
+        <p>Name: </p>
+        <span th:text="${cigar.name}"></span>
+    </li>
+</ul>
+</body>
+</html>
