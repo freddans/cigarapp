@@ -1,6 +1,4 @@
 package com.fredrik.cigarapp.controller;
-
-import ch.qos.logback.classic.Logger;
 import com.fredrik.cigarapp.model.Cigar;
 import com.fredrik.cigarapp.service.CigarService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,7 +63,22 @@ public class CigarController {
         return ResponseEntity.ok(cigarBrands);
     }
 
+    @GetMapping("brands/{brand}")
+    public ResponseEntity<List<Cigar>> getBrandsByBrand(@PathVariable("brand") String brand) {
+        List<Cigar> test = new ArrayList<>();
+        service.getCigarsByBrand(brand);
+
+        for (Cigar cigar : service.getCigarsByBrand(brand)) {
+            if (cigar.getBrand().contains(brand)) {
+                test.add(cigar);
+            }
+        }
+
+        return ResponseEntity.ok(test);
+    }
+
     @GetMapping("/celebrities")
+    @ResponseBody
     public ResponseEntity<List<String>> getFavoriteOf() {
         List<String> favoriteCigars = service.getAllFavoriteOf();
 
@@ -95,5 +108,8 @@ public class CigarController {
         return "EditCigar";
     }
 
-
+    @GetMapping("main")
+    public String mainPage() {
+        return "MainPage";
+    }
 }
