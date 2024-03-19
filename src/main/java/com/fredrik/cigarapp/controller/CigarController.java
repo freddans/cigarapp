@@ -108,8 +108,13 @@ public class CigarController {
         return "EditCigar";
     }
 
-    @GetMapping("main")
+    @GetMapping("/main")
     public String mainPage() {
         return "MainPage";
+    }
+
+    @GetMapping("/test")
+    public String testPage() {
+        return "TestPage";
     }
 }

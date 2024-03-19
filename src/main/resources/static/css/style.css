@@ -1,3 +1,58 @@
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    background: crimson;
+    font-family: calibri, serif;
+    padding: 20px 15px;
+    /*padding-top: 20px;*/
+    /*padding-right: 15px;*/
+    /*padding-left: 15px;*/
+    /*padding-bottom: 20px;*/
+}
+
+.navdiv {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo a {
+    font-size: 35px;
+    font-weight: 600;
+    color: white;
+}
+
+li {
+    list-style: none;
+    display: inline-block;
+}
+
+li a {
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 25px;
+}
+
+button {
+    background-color: black;
+    margin-left: 10px;
+    border-radius: 10px;
+    padding: 10px;
+    width: 90px;
+}
+
+button a {
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -7,16 +62,23 @@
 
 body {
     background-color: #eeeeea;
+    padding-top: 60px;
+    position: relative;
 }
 
 /*100vh = center*/
 .wrapper {
-    margin-top: 10px;
-    width: 100%;
-    height: 35vh;
+    position: fixed;
+    top: 51px;
+    left: 0;
+    width: 100vw;
+    height: calc(100vh - 60px);
     display: flex;
-    align-items: center;
+    /*align-items: center;*/
+    align-items: flex-start;
     justify-content: left;
+    overflow-x: auto;
+    margin-top: 30px;
 }
 
 /*container of pictures*/
@@ -30,12 +92,12 @@ body {
 /*the card*/
 .card {
     width: 80px;
-    border-radius: .75rem;
+    /*border-radius: .75rem;*/
     background-size: cover;
     cursor: pointer;
     overflow: hidden;
-    border-radius: 2rem;
-    margin: 0 10px;
+    /*border-radius: 2rem;*/
+    /*margin: 0 10px;*/
     display: flex;
     align-items: flex-end;
     transition: .6s cubic-bezier(.28,-0.03,0,.99);
@@ -53,7 +115,7 @@ body {
 .card > .row > .icon {
     background: #223;
     color: white;
-    border-radius: 50%;
+    /*border-radius: 50%;*/
     width: 50px;
     display: flex;
     justify-content: center;

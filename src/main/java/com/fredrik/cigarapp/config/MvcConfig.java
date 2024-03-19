@@ -12,5 +12,9 @@ public class MvcConfig implements WebMvcConfigurer {
                 .addResourceLocations("classpath:/static/images/"); // Define the location of the resources
         registry.addResourceHandler("/css/**")
                 .addResourceLocations("classpath:/static/css/");
+        registry.addResourceHandler("/javascript/**")
+                .addResourceLocations("classpath:/static/javascript/");
+        registry.addResourceHandler("/icons/**")
+                .addResourceLocations("classpath:/static/icons/");
     }
 }
