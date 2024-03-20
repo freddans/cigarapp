@@ -110,6 +110,13 @@ section{
     display: block;
 }
 
+.home .content.active.hiddena {
+    display: none;
+    margin-bottom: 65px;
+    margin: 0;
+    padding: 0;
+}
+
 .home .content h1{
     font-size: 4em;
     font-weight: 900;
@@ -125,7 +132,7 @@ section{
 }
 
 .home .content p{
-    margin-bottom: 65px;
+    margin-bottom: 25px;
 }
 
 /* "Read More"-button */
@@ -137,6 +144,21 @@ section{
     font-weight: 500;
     text-decoration: none;
     border-radius: 2px;
+}
+
+/* content-more */
+.home .content .content-more {
+    display: none;
+    margin-bottom: 65px;
+    margin: 0;
+    padding: 0;
+}
+
+.home .content .content-more.hidden{
+    display: none;
+    margin-bottom: 65px;
+    margin: 0;
+    padding: 0;
 }
 
 /* when hovering "Read More" */
@@ -179,6 +201,7 @@ section{
     object-fit: cover;
 }
 
+/* slider */
 .slider-navigation{
     z-index: 888;
     position: relative;
@@ -189,6 +212,7 @@ section{
     margin-bottom: 12px;
 }
 
+/* slider */
 .slider-navigation .nav-btn{
     width: 12px;
     height: 12px;
