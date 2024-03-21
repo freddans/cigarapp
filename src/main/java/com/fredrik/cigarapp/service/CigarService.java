@@ -63,4 +63,8 @@ public class CigarService {
         }
         return savedCigars;
     }
+
+    public void delete(Cigar cigar) {
+        repo.delete(cigar);
+    }
 }

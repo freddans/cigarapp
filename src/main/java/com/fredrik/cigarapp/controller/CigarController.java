@@ -113,13 +113,14 @@ public class CigarController {
         return "EditCigar";
     }
 
+    // get Cigar by Id
     @GetMapping("/cigar/{id}")
     @ResponseBody
     public Cigar getCigarById(@PathVariable Long id) {
         return service.getCigarById(id);
     }
 
-    @PutMapping("/edit/{id}")
+    @PutMapping("/editcigar/{id}")
     public ResponseEntity<String> editById(@PathVariable Long id, @RequestBody Cigar updatedCigar) {
         Cigar existingCigar = getCigarById(id);
 
@@ -184,6 +185,19 @@ public class CigarController {
 
         service.save(existingCigar);
         return ResponseEntity.status(HttpStatus.OK).body(responseMessage.toString());
+    }
+
+    // Delete
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteCigarById(@PathVariable Long id) {
+        Cigar cigarToDelete = getCigarById(id);
+
+        if (cigarToDelete != null) {
+            service.delete(cigarToDelete);
+            return ResponseEntity.ok("Cigar with ID: " + id + " has been deleted");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("ERROR: Cigar with id: " + id + ", does not exist");
+        }
     }
 
     @GetMapping("/main")
