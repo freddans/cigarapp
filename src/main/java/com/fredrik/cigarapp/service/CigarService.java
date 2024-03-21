@@ -11,11 +11,19 @@ import java.util.List;
 @Service
 public class CigarService {
 
+    private CigarRepo repo;
+
     @Autowired
-    CigarRepo repo;
+    public CigarService(CigarRepo repo) {
+        this.repo = repo;
+    }
 
     public List<Cigar> getAllCigars() {
         return repo.findAll();
+    }
+
+    public Cigar getCigarById(Long id) {
+        return repo.findById(id).orElse(null);
     }
 
     public List<String> getAllBrands() {
@@ -54,5 +62,9 @@ public class CigarService {
             savedCigars.add(repo.save(cigar));
         }
         return savedCigars;
+    }
+
+    public void delete(Cigar cigar) {
+        repo.delete(cigar);
     }
 }
