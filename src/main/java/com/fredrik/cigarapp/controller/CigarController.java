@@ -182,6 +182,18 @@ public class CigarController {
             responseMessage.append("\nFavoriteOf updated from " + existingCigar.getFavoriteOf() + " to " + updatedCigar.getFavoriteOf());
             existingCigar.setFavoriteOf(updatedCigar.getFavoriteOf());
         }
+        if (updatedCigar.getImagePath() != null) {
+            responseMessage.append("\nImgPath updated from " + existingCigar.getImagePath() + " to " + updatedCigar.getImagePath());
+            existingCigar.setImagePath(updatedCigar.getImagePath());
+        }
+        if (updatedCigar.getBrandImagePath() != null) {
+            responseMessage.append("\nBrandImagePath updated from " + existingCigar.getBrandImagePath() + " to " + updatedCigar.getBrandImagePath());
+            existingCigar.setBrandImagePath(updatedCigar.getBrandImagePath());
+        }
+        if (updatedCigar.getOriginImagePath() != null) {
+            responseMessage.append("\nOriginImagePath updated from " + existingCigar.getOriginImagePath() + " to " + updatedCigar.getOriginImagePath());
+            existingCigar.setOriginImagePath(updatedCigar.getOriginImagePath());
+        }
 
         service.save(existingCigar);
         return ResponseEntity.status(HttpStatus.OK).body(responseMessage.toString());
@@ -200,13 +212,29 @@ public class CigarController {
         }
     }
 
+
+
+    // WEBPAGE
     @GetMapping("/main")
     public String mainPage() {
         return "MainPage";
     }
 
     @GetMapping("/test")
-    public String testPage() {
+    public String testPage(Model model) {
         return "TestPage";
+    }
+
+    @GetMapping("/toggleModal")
+    public String toggleModal(Model model) {
+        return "modalcontent :: modal";
+    }
+
+    // Test for table
+    @GetMapping("/cigardb")
+    public String getCigarDbPage(Model model) {
+        model.addAttribute("showModal", true);
+        model.addAttribute("cigars", service.getAllCigars());
+        return "CigarDB";
     }
 }

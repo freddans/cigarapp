@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface CigarRepo extends JpaRepository<Cigar, Long> {
     List<Cigar> findAllByBrand(String brand);
+    List<Cigar> findByName(String name);
 }

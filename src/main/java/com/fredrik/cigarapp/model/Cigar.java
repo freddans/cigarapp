@@ -37,6 +37,12 @@ public class Cigar {
     private String rating;
     @Column
     private String favoriteOf;
+    @Column
+    private String imagePath;
+    @Column
+    private String brandImagePath;
+    @Column
+    private String originImagePath;
 
     public Cigar() {
     }
@@ -159,5 +165,29 @@ public class Cigar {
 
     public void setFavoriteOf(String favoriteOf) {
         this.favoriteOf = favoriteOf;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+
+    public String getBrandImagePath() {
+        return brandImagePath;
+    }
+
+    public void setBrandImagePath(String brandImagePath) {
+        this.brandImagePath = brandImagePath;
+    }
+
+    public String getOriginImagePath() {
+        return originImagePath;
+    }
+
+    public void setOriginImagePath(String originImagePath) {
+        this.originImagePath = originImagePath;
     }
 }

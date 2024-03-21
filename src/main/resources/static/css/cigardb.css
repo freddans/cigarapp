@@ -1,0 +1,55 @@
+/* Reset default margin and padding */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+}
+
+/* Center align the heading */
+h1 {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+/* Style for the entire table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for table header */
+thead {
+    background-color: #f08801;
+    color: #fff;
+}
+
+/* Style for table header cells */
+thead th {
+    padding: 12px;
+    text-align: left;
+}
+
+/* Style for even rows */
+tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Style for table cells */
+tbody td {
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+}
+
+/* Style for the search container */
+.search-container {
+    margin-top: 20px;
+}
+
+/* Alternate row background on hover */
+tbody tr:hover {
+    background-color: #ddd;
+}

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CigarService {
@@ -66,5 +67,15 @@ public class CigarService {
 
     public void delete(Cigar cigar) {
         repo.delete(cigar);
+    }
+
+    // WEB EXTRA
+    // Search bar
+    // Method to search cigars by name
+    public List<Cigar> searchCigarsByName(String name) {
+        List <Cigar> cigarList = repo.findAll();
+        return cigarList.stream()
+                .filter(cigar -> cigar.getName().toLowerCase().contains(name.toLowerCase()))
+                .collect(Collectors.toList());
     }
 }

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cigar Database</title>
+    <!-- Add your CSS links here -->
+    <link rel="stylesheet" href="/css/cigardb.css">
+</head>
+<body>
+
+<h1>Cigar Database</h1>
+
+<!-- Search bar -->
+<center><input type="text" id="searchInput" align="center" onkeyup="searchCigars()" placeholder="Search for cigars..."></center>
+
+<table>
+    <thead>
+    <tr>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Brand</th>
+        <th>Origin</th>
+        <th>Price</th>
+        <th>Box</th>
+        <th>Contains</th>
+        <th>Status</th>
+        <th>Rating</th>
+    </tr>
+    </thead>
+    <tbody id="cigarTableBody">
+    <!-- Iterate over cigars and populate the table rows -->
+    <tr th:each="cigar : ${cigars}">
+        <td><img th:src="${cigar.imagePath}" alt="Cigar Image" width="30" height="30"></td>
+        <td th:text="${cigar.name}"></td>
+        <td><img th:src="${cigar.brandImagePath}" alt="Brand Image" width="50" height="30" th:title="${cigar.brand}">&nbsp;
+        <td><img th:src="${cigar.originImagePath}" alt="Origin Image" width="50" height="30" th:title="${cigar.origin}"></td>
+        <td th:text="${cigar.price}"></td>
+        <td th:text="${cigar.boxPrice}"></td>
+        <td th:text="${cigar.boxAmount}"><p> cigars</p></td>
+        <td th:text="${cigar.status}"></td>
+        <td th:text="${cigar.rating}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<script>
+    function searchCigars() {
+        var keyword = document.getElementById("searchInput").value;
+        if (keyword.trim() === "") {
+            // If search input is empty, display all cigars
+            displayAllCigars();
+        } else {
+            // If search input is not empty, filter cigars by name
+            filterCigarsByName(keyword);
+        }
+    }
+
+    function displayAllCigars() {
+        var cigars = document.querySelectorAll("#cigarTableBody tr");
+        cigars.forEach(function (cigar) {
+            cigar.style.display = "table-row";
+        });
+    }
+
+    function filterCigarsByName(keyword) {
+        var cigars = document.querySelectorAll("#cigarTableBody tr");
+        cigars.forEach(function (cigar) {
+            var name = cigar.querySelector("td:nth-child(2)").textContent.toLowerCase();
+            if (name.includes(keyword.toLowerCase())) {
+                cigar.style.display = "table-row";
+            } else {
+                cigar.style.display = "none";
+            }
+        });
+    }
+</script>
+
+</body>
+</html>
