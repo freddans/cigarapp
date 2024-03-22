@@ -193,6 +193,7 @@ public class CigarController {
         if (updatedCigar.getOriginImagePath() != null) {
             responseMessage.append("\nOriginImagePath updated from " + existingCigar.getOriginImagePath() + " to " + updatedCigar.getOriginImagePath());
             existingCigar.setOriginImagePath(updatedCigar.getOriginImagePath());
+            force();
         }
 
         service.save(existingCigar);
@@ -212,6 +213,23 @@ public class CigarController {
         }
     }
 
+
+    // Force
+    @PutMapping("/forceFlag")
+    public void force() {
+        List<Cigar> cigarList = service.getAllCigars();
+        for (Cigar cigar : cigarList) {
+            if (cigar.getOrigin().contains("Nicaragua")) {
+                cigar.setOriginImagePath("/icons/origin/nicaragua.png");
+            } else if (cigar.getOrigin().contains("Cuba")) {
+                cigar.setOriginImagePath("/icons/origin/cuba.png");
+            } else if (cigar.getOrigin().contains("Dominican Republic")) {
+                cigar.setOriginImagePath("/icons/origin/dominicanrepublic.png");
+            }
+            service.save(cigar);
+        }
+        System.out.println("done");
+    }
 
 
     // WEBPAGE
