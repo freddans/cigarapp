@@ -226,6 +226,10 @@ public class CigarController {
             } else if (cigar.getOrigin().contains("Dominican Republic")) {
                 cigar.setOriginImagePath("/icons/origin/dominicanrepublic.png");
             }
+            if (!cigar.getImagePath().contains("/images/cigar/cigar_placeholder.png")) {
+                cigar.setImagePath("/images/cigar/cigar_placeholder.png");
+            }
+
             service.save(cigar);
         }
         System.out.println("done");
