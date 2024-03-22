@@ -7,10 +7,45 @@
     <title>Cigar Database</title>
     <!-- Add your CSS links here -->
     <link rel="stylesheet" href="/css/cigardb.css">
+    <style>
+        /* Add custom styles for clickable headers */
+        th {
+            cursor: pointer; /* Change cursor to pointer to indicate clickable */
+        }
+
+        /* Restore mouseover effect */
+        th:hover {
+            background-color: #ddd;
+        }
+
+        .invisible {
+            display: none;
+            visibility: hidden;
+        }
+    </style>
 </head>
 <body>
 
-<h1>Cigar Database</h1>
+<header>
+    <a href="/test" class="brand">lounge database</a>
+    <div class="menu-btn">
+        <div class="navigation">
+            <div class="navigation-items">
+                <a href="/test">Main</a>
+                <a href="/cigardb">CigarDB</a>
+                <a href="#">Contact</a>
+                <a href="#">Login/Signup</a>
+            </div> <!-- /navigation items -->
+        </div> <!-- /navigation -->
+    </div> <!-- /menu-btn -->
+</header>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 <!-- Search bar -->
 <center><input type="text" id="searchInput" align="center" onkeyup="searchCigars()" placeholder="Search for cigars..."></center>
@@ -18,15 +53,15 @@
 <table>
     <thead>
     <tr>
-        <th>Image</th>
-        <th>Name</th>
-        <th>Brand</th>
-        <th>Origin</th>
-        <th>Price</th>
-        <th>Box</th>
-        <th>Contains</th>
-        <th>Status</th>
-        <th>Rating</th>
+        <th onclick="sortTable(0)">Image</th>
+        <th onclick="sortTable(1)">Name</th>
+        <th onclick="sortTable(2)">Brand</th>
+        <th onclick="sortTable(3)">Origin</th>
+        <th onclick="sortTable(4)">Price</th>
+        <th onclick="sortTable(5)">Box</th>
+        <th onclick="sortTable(6)">Contains</th>
+        <th onclick="sortTable(7)">Status</th>
+        <th onclick="sortTable(8)">Rating</th>
     </tr>
     </thead>
     <tbody id="cigarTableBody">
@@ -34,48 +69,20 @@
     <tr th:each="cigar : ${cigars}">
         <td><img th:src="${cigar.imagePath}" alt="Cigar Image" width="30" height="30"></td>
         <td th:text="${cigar.name}"></td>
-        <td><img th:src="${cigar.brandImagePath}" alt="Brand Image" width="50" height="30" th:title="${cigar.brand}">&nbsp;
+        <td><img th:src="${cigar.brandImagePath}" alt="Brand Image" width="50" height="30" th:title="${cigar.brand}">
+            <span class="invisible" th:text="${cigar.brand}"></span></td>
+            &nbsp;
         <td><img th:src="${cigar.originImagePath}" alt="Origin Image" width="50" height="30" th:title="${cigar.origin}"></td>
         <td th:text="${cigar.price}"></td>
         <td th:text="${cigar.boxPrice}"></td>
-        <td th:text="${cigar.boxAmount}"><p> cigars</p></td>
+        <td th:text="${cigar.boxAmount}"></td>
         <td th:text="${cigar.status}"></td>
         <td th:text="${cigar.rating}"></td>
     </tr>
     </tbody>
 </table>
 
-<script>
-    function searchCigars() {
-        var keyword = document.getElementById("searchInput").value;
-        if (keyword.trim() === "") {
-            // If search input is empty, display all cigars
-            displayAllCigars();
-        } else {
-            // If search input is not empty, filter cigars by name
-            filterCigarsByName(keyword);
-        }
-    }
-
-    function displayAllCigars() {
-        var cigars = document.querySelectorAll("#cigarTableBody tr");
-        cigars.forEach(function (cigar) {
-            cigar.style.display = "table-row";
-        });
-    }
-
-    function filterCigarsByName(keyword) {
-        var cigars = document.querySelectorAll("#cigarTableBody tr");
-        cigars.forEach(function (cigar) {
-            var name = cigar.querySelector("td:nth-child(2)").textContent.toLowerCase();
-            if (name.includes(keyword.toLowerCase())) {
-                cigar.style.display = "table-row";
-            } else {
-                cigar.style.display = "none";
-            }
-        });
-    }
-</script>
+<script src="/javascript/cigardbsearch.js"></script>
 
 </body>
 </html>

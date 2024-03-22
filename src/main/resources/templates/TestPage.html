@@ -11,16 +11,12 @@
 <body>
 
 <header>
-    <a href="/test" class="brand">lounge:q</a>
+    <a href="/test" class="brand">lounge</a>
     <div class="menu-btn">
         <div class="navigation">
             <div class="navigation-items">
-                <a href="#">Main</a>
+                <a href="/test">Main</a>
                 <a href="/cigardb">CigarDB</a>
-                <a href="#">Brands</a>
-                <a href="#">Humidor</a>
-                <a href="#">Favorites</a>
-                <a href="#">Blog</a>
                 <a href="#">Contact</a>
                 <a href="#">Login/Signup</a>
             </div> <!-- /navigation items -->
@@ -116,34 +112,6 @@
     </div> <!-- /slider navigation -->
 </section> <!-- /home -->
 
-<!-- Modal -->
-<!-- Modal container -->
-<!--<div id="myModal" th:replace="modalcontent :: modal"></div>-->
-
-
-
-<!-- OLD MODAL UNDER SITE -->
-<!--<div th:if="${showModal}" class="modal">-->
-<!--    <div class="modal-content">-->
-<!--        <span class="close">&times;</span>-->
-<!--        <table id="cigarTable">-->
-<!--            &lt;!&ndash; Table content will be dynamically generated here &ndash;&gt;-->
-<!--            <tr>-->
-<!--                <th>Name</th>-->
-<!--                <th>Brand</th>-->
-<!--                <th>Price</th>-->
-<!--            </tr>-->
-<!--            &lt;!&ndash; Iterate over cigars and populate the table rows &ndash;&gt;-->
-<!--            <tr th:each="cigar : ${cigars}">-->
-<!--                <td th:text="${cigar.name}"></td>-->
-<!--                <td th:text="${cigar.brand}"></td>-->
-<!--                <td th:text="${cigar.price}"></td>-->
-<!--            </tr>-->
-<!--        </table>-->
-<!--    </div>-->
-<!--</div>-->
-
 <script src="/javascript/main.js"></script>
-
 </body>
 </html>
