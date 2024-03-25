@@ -196,6 +196,10 @@ public class CigarController {
             existingCigar.setOriginImagePath(updatedCigar.getOriginImagePath());
 //            force();
         }
+        if (updatedCigar.getProfilePicture() != null) {
+            responseMessage.append("\nProfilePicture updated from " + existingCigar.getProfilePicture() + " to " + updatedCigar.getProfilePicture());
+            existingCigar.setProfilePicture(updatedCigar.getProfilePicture());
+        }
 
         service.save(existingCigar);
         return ResponseEntity.status(HttpStatus.OK).body(responseMessage.toString());

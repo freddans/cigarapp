@@ -43,6 +43,8 @@ public class Cigar {
     private String brandImagePath;
     @Column
     private String originImagePath;
+    @Column
+    private String profilePicture;
 
     public Cigar() {
     }
@@ -189,5 +191,13 @@ public class Cigar {
 
     public void setOriginImagePath(String originImagePath) {
         this.originImagePath = originImagePath;
+    }
+
+    public String getProfilePicture() {
+        return profilePicture;
+    }
+
+    public void setProfilePicture(String profilePicture) {
+        this.profilePicture = profilePicture;
     }
 }

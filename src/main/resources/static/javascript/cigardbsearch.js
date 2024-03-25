@@ -1,6 +1,6 @@
 function searchCigars() {
-    var keyword = document.getElementById("searchInput").value;
-    if (keyword.trim() === "") {
+    var keyword = document.getElementById("searchInput").value.trim();
+    if (keyword === "") {
         // If search input is empty, display all cigars
         displayAllCigars();
     } else {
@@ -9,13 +9,38 @@ function searchCigars() {
     }
 }
 
+
 function filterCigarsByNameOrBrand(keyword) {
     const cigars = document.querySelectorAll("#cigarTableBody tr");
     cigars.forEach(function (cigar) {
-        const name = cigar.querySelector("td:nth-child(2)").textContent.toLowerCase();
-        const brand = cigar.querySelector("td:nth-child(3)").textContent.toLowerCase();
+        const name = cigar.querySelector("td:nth-child(3)").textContent.toLowerCase();
+        const brand = cigar.querySelector("td:nth-child(4)").textContent.toLowerCase();
         console.log("Name: " + name + ", Brand: " + brand);
         if (name.includes(keyword.toLowerCase()) || brand.includes(keyword.toLowerCase())) {
+            cigar.style.display = "table-row";
+        } else {
+            cigar.style.display = "none";
+        }
+    });
+}
+
+function filterCigarsByName(keyword) {
+    const cigars = document.querySelectorAll("#cigarTableBody tr");
+    cigars.forEach(function (cigar) {
+        const name = cigar.querySelector("td:nth-child(2)").textContent.toLowerCase();
+        if (name.includes(keyword.toLowerCase())) {
+            cigar.style.display = "table-row";
+        } else {
+            cigar.style.display = "none";
+        }
+    });
+}
+
+function filterCigarsByBrand(keyword) {
+    const cigars = document.querySelectorAll("#cigarTableBody tr");
+    cigars.forEach(function (cigar) {
+        const brand = cigar.querySelector("td:nth-child(4)").textContent.toLowerCase(); // Corrected query selector for brand
+        if (brand.includes(keyword.toLowerCase())) {
             cigar.style.display = "table-row";
         } else {
             cigar.style.display = "none";
