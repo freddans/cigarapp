@@ -82,7 +82,7 @@ public class CigarController {
         return ResponseEntity.ok(test);
     }
 
-    @GetMapping("/celebrities")
+    @GetMapping("/favorites")
     @ResponseBody
     public ResponseEntity<List<String>> getFavoriteOf() {
         List<String> favoriteCigars = service.getAllFavoriteOf();
@@ -120,6 +120,7 @@ public class CigarController {
         return service.getCigarById(id);
     }
 
+    // Edit in postman
     @PutMapping("/editcigar/{id}")
     public ResponseEntity<String> editById(@PathVariable Long id, @RequestBody Cigar updatedCigar) {
         Cigar existingCigar = getCigarById(id);
@@ -200,7 +201,7 @@ public class CigarController {
         return ResponseEntity.status(HttpStatus.OK).body(responseMessage.toString());
     }
 
-    // Delete
+    // Delete in postman
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteCigarById(@PathVariable Long id) {
         Cigar cigarToDelete = getCigarById(id);
@@ -259,4 +260,17 @@ public class CigarController {
         model.addAttribute("cigars", service.getAllCigars());
         return "CigarDB";
     }
+
+    // cigarprofile webtest
+    @GetMapping("/data")
+    public String getData() {
+        return "{\"name\":\"John\", \"age\":30}";
+    }
+
+    @GetMapping("/home")
+    public String home() {
+        return "home";
+    }
+
+
 }
