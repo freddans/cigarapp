@@ -114,9 +114,23 @@ tbody td {
     border: 1px solid #ddd;
 }
 
-/* Style for the search container */
 .search-container {
-    margin-top: 20px;
+    text-align: center; /* Center align the content */
+    margin-top: 60px;
+    margin-bottom: 20px;
+}
+
+.search-container input {
+    width: 20%; /* Adjust the width as needed */
+    padding: 10px; /* Add padding for better spacing */
+    border-radius: 5px; /* Add border radius for rounded corners */
+    border: 1px solid #f08801; /* Add border for better visibility */
+    box-sizing: border-box; /* Include padding and border in the width */
+    outline: none; /* Remove default input outline */
+}
+
+.search-container input:focus {
+    border-color: #ffb054; /* Change border color on focus */
 }
 
 /* Alternate row background on hover */

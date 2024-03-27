@@ -1,177 +1,432 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
 
-.navbar {
-    position: fixed;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+header{
+    z-index: 999;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 999;
-    background: crimson;
-    font-family: calibri, serif;
-    padding: 20px 15px;
-    /*padding-top: 20px;*/
-    /*padding-right: 15px;*/
-    /*padding-left: 15px;*/
-    /*padding-bottom: 20px;*/
-}
-
-.navdiv {
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
+    padding: 15px 200px;
+    transition: 0.5s ease;
 }
 
-.logo a {
-    font-size: 35px;
-    font-weight: 600;
-    color: white;
+/* LOUNGE/logo */
+header .brand{
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
 }
 
-li {
-    list-style: none;
-    display: inline-block;
+header .brand:hover{
+    color: #f08801;
 }
 
-li a {
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
-    margin-right: 25px;
-}
-
-button {
-    background-color: black;
-    margin-left: 10px;
-    border-radius: 10px;
-    padding: 10px;
-    width: 90px;
-}
-
-button a {
-    color: white;
-    font-weight: bold;
-    font-size: 15px;
-}
-
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-body {
-    background-color: #eeeeea;
-    padding-top: 60px;
+header .navigation{
     position: relative;
 }
 
-/*100vh = center*/
-.wrapper {
-    position: fixed;
-    top: 51px;
+header .navigation .navigation-items a{
+    position: relative;
+    color: #fff;
+    font-size: 1em;
+    font-weight: 500;
+    text-decoration: none;
+    margin-left: 30px;
+    transition: 0.3s ease;
+}
+
+/* KANSKE INTE BEHÖVS */
+/* while hovering link-text */
+/*header .navigation .navigation-items a:hover{*/
+/*    color:#fff;*/
+/*}*/
+
+/* line under link */
+header .navigation .navigation-items a:before{
+    content: '';
+    position: absolute;
+    background: #fff;
+    width: 0;
+    height: 3px;
+    bottom: 0;
     left: 0;
-    width: 100vw;
-    height: calc(100vh - 60px);
-    display: flex;
-    /*align-items: center;*/
-    align-items: flex-start;
-    justify-content: left;
-    overflow-x: auto;
-    margin-top: 30px;
+    transition: 0.3s ease;
 }
 
-/*container of pictures*/
-.container {
-    height: 400px;
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: start;
+/* line under link while hover */
+header .navigation .navigation-items a:hover:before{
+    width: 100%;
+    background: #f08801;
 }
 
-/*the card*/
-.card {
-    width: 80px;
-    /*border-radius: .75rem;*/
-    background-size: cover;
-    cursor: pointer;
-    overflow: hidden;
-    /*border-radius: 2rem;*/
-    /*margin: 0 10px;*/
-    display: flex;
-    align-items: flex-end;
-    transition: .6s cubic-bezier(.28,-0.03,0,.99);
-    box-shadow: 0px 10px 30px -5px rgba(0,0,0,0.8);
+/* pushing main small text, big text and button out */
+section{
+    padding: 100px 200px;
 }
 
-/*Color of rubrik*/
-.card > .row {
-    color: white;
-    display: flex;
-    flex-wrap: nowrap;
-}
-
-/*numbered circles on image*/
-.card > .row > .icon {
-    background: #223;
-    color: white;
-    /*border-radius: 50%;*/
-    width: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 15px;
-}
-
-/*movement and design of text*/
-.card > .row > .description {
+/* Transition BG */
+.home{
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     flex-direction: column;
-    overflow: hidden;
-    height: 80px;
-    width: 520px;
-    opacity: 0;
-    transform: translateY(30px);
-    transition-delay: .3s;
-    transition: all .3s ease;
+    background: rgba(240, 136, 1, 36);
 }
 
-.description p {
-    color: #b0b0ba;
-    padding-top: 5px;
+.home:before{
+    z-index: 777;
+    content: '';
+    position: absolute;
+    background: rgba(251, 3, 3, 0.034);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
 }
 
-.description h4 {
-    text-transform: uppercase;
-}
-
-input {
+/* content - the text */
+.home .content{
+    max-height: 15em;
+    z-index: 888;
+    color: #fff;
+    width: 70%;
+    margin-top: 50px;
     display: none;
 }
 
-input:checked + label {
-    width: 600px;
+/* the first small container of the text - could add background */
+.home .content.active{
+    display: block;
 }
 
-input:checked + label .description {
-    opacity: 1 !important;
-    transform: translateY(0) !important;
+/*KANSKE INTE BEHÖVS*/
+.home .content.active.hiddena {
+    display: none;
+    margin-bottom: 65px;
+    margin: 0;
+    padding: 0;
 }
 
-.card[for="c1"] {
-    background-image: url('/images/img1.jpeg');
-}
-.card[for="c2"] {
-    background-image: url('/images/img2.jpeg');
-}
-.card[for="c3"] {
-    background-image: url('/images/img3.jpeg');
-}
-.card[for="c4"] {
-    background-image: url('/images/img4.jpeg');
+.home .content h1{
+    font-size: 4em;
+    font-weight: 999;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    line-height: 75px;
+    margin-bottom: 40px;
 }
 
-/*.hidden {*/
-/*    display: none;*/
-/*}*/
+.home .content h1 span{
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+/* pushes read more button small text */
+.home .content p{
+    margin-bottom: 25px;
+}
+
+/* "Read More"-button kanske inte längre behövs */
+.home .content a{
+    background: #f08801;
+    padding: 15px 35px;
+    color: #fff;
+    font-size: 1.1em;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 2px;
+    z-index: 999;
+}
+
+/* content-more ALL TEXT IN CONTAINER THAT OPENS */
+.home .content .content-more {
+    /*top: 100%;*/
+    /*width: 100%;*/
+    /*display: none;*/
+    display: none;
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 7px;
+    position: fixed;
+    top: 40%; /* Adjust the top position based on your header height */
+    left: 50%; /* Position container at the center horizontally */
+    transform: translateX(-50%); /* Center the container horizontally */
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    z-index: 999; /* Ensure the container appears above other elements */
+}
+
+/* read more button div design */
+.home .content .read-more-container {
+    position: relative; /* Container for the "Read More" button */
+}
+
+/*read more button KANSKE INTE BEHÖVS */
+.home .content .read-more {
+    background: #f08801;
+    padding: 15px 35px;
+    color: #fff;
+    font-size: 1.1em;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 2px;
+    position: absolute;
+    bottom: -40px;
+    left: 0;
+    transition: bottom 0.3s ease;
+    z-index: 999; /* Add a higher z-index value */
+}
+
+/* kanske inte behövs */
+.home .content .content-more.active + .read-more-container .read-more {
+    bottom: -80px; /* Adjust this value to position the button further down when content is expanded */
+}
+
+.home .content .content-more.hidden{
+    display: none;
+    margin-bottom: 65px;
+    margin: 0;
+    padding: 0;
+}
+
+/* when hovering "Read More" */
+.home .content a:hover{
+    background: #fff;
+    color: #f08801;
+}
+
+.home .media-icons{
+    z-index: 888;
+    position: absolute;
+    right: 30px;
+    display: flex;
+    flex-direction: column;
+    transition: 0.5s ease;
+}
+
+.home .media-icons a{
+    color: #fff;
+    font-size: 1.6em;
+    transition: 0.3s ease;
+}
+
+.home .media-icons a:not(:last-child){
+    margin-bottom: 20px;
+}
+
+.home .media-icons a:hover{
+    transform: scale(1.3);
+    color: #f08801;
+}
+
+.home img{
+    z-index: 000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* slider */
+.slider-navigation{
+    z-index: 800;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(25vh);
+    margin-bottom: 12px;
+}
+
+/* slider */
+.slider-navigation .nav-btn{
+    width: 12px;
+    height: 12px;
+    background: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
+    transition: 0.3s ease;
+}
+
+/* color of nav-circle when active */
+.slider-navigation .nav-btn.active{
+    background: #f08801;
+}
+
+/* space between nav-circles */
+.slider-navigation .nav-btn:not(:last-child){
+    margin-right: 20px;
+}
+
+/* increase size while hover */
+.slider-navigation .nav-btn:hover{
+    transform: scale(1.2);
+}
+
+.img-slide{
+    position: absolute;
+    width: 100%;
+    clip-path: circle(0% at 0 50%);
+}
+
+.img-slide.active{
+    clip-path: circle(150% at 0 50%);
+    transition: 2s ease;
+    transition-property: clip-path;
+}
+
+/* resizable window */
+@media (max-width: 1040px){
+    header {
+        padding: 12px 20px;
+    }
+    section {
+        padding: 100px 20px;
+    }
+    .home .media-icons{
+        right: 15px;
+    }
+    header .navigation{
+        display: none;
+    }
+    header .navigation.active{
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: rgba(1, 1, 1, 0.5);
+    }
+
+    header .navigation .navigation-items a{
+        color: #222;
+        font-size: 1.2em;
+        margin: 20px;
+    }
+
+    header .navigation .navigation-items a:before{
+        background: #222;
+        height: 5px;
+    }
+
+    header .navigation .navigation-items{
+        background: #fff;
+        width: 600px;
+        max-width: 600px;
+        margin: 20px;
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 5px;
+        box-shadow: 0 5px 25px rgb(1 1 1 / 20%);
+    }
+
+    .menu-btn{
+        background: url(/icons/menu.png)no-repeat;
+        background-size: 30px;
+        background-position: center;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        transition: 0.3s ease;
+    }
+
+    .menu-btn:hover {
+        background: url(/icons/menuhover.png)no-repeat;
+        background-size: 30px;
+        background-position: center;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        transition: 0.3s ease;
+    }
+
+    .menu-btn.active{
+        z-index: 999;
+        background: url(/icons/close.png)no-repeat;
+        background-size: 25px;
+        background-position: center;
+        transition: 0.3s ease;
+    }
+
+    .menu-btn.active:hover{
+        z-index: 999;
+        background: url(/icons/closehover.png)no-repeat;
+        background-size: 25px;
+        background-position: center;
+        transition: 0.3s ease;
+    }
+}
+
+@media (max-width: 560px){
+    .home .content h1{
+        font-size: 3em;
+        line-height: 60px;
+    }
+}
+
+/* Modal */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 999; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    max-width: 600px; /* Limit width on larger screens */
+}
+
+/* Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Additional styling for modal inner content */
+.modal-inner-content {
+    max-height: 300px; /* Limit height of inner content with scroll */
+    overflow-y: auto; /* Enable vertical scroll */
+}
