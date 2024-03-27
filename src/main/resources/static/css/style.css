@@ -154,9 +154,6 @@ section{
 
 /* content-more ALL TEXT IN CONTAINER THAT OPENS */
 .home .content .content-more {
-    /*top: 100%;*/
-    /*width: 100%;*/
-    /*display: none;*/
     display: none;
     padding-top: 20px;
     padding-left: 20px;
@@ -176,7 +173,14 @@ section{
     overflow-y: auto; /* Enable vertical scrollbar */
     scrollbar-width: thin; /* Specify the width of the scrollbar */
     scrollbar-color: orange rgba(0, 0, 0, 0.4); /* Define the color of the scrollbar */
+}
 
+
+.home .content .content-more img {
+    position: static;
+    width: 100%; /* Set the width of the image to fill the div */
+    height: 100px; /* Set the height of the image to fill the div */
+    object-fit: cover; /* Maintain aspect ratio and cover the entire space */
 }
 
 /* Custom scrollbar design for WebKit browsers */
