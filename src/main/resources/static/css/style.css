@@ -160,7 +160,7 @@ section{
     padding-right: 20px;
     border-radius: 7px;
     position: fixed;
-    top: 30%; /* Adjust the top position based on your header height */
+    top: 15%; /* Adjust the top position based on your header height */
     left: 50%; /* Position container at the center horizontally */
     transform: translateX(-50%); /* Center the container horizontally */
     background-color: rgba(0, 0, 0, 0.4);
@@ -169,17 +169,30 @@ section{
     z-index: 999; /* Ensure the container appears above other elements */
 
     /* Add scrollbar styling */
-    max-height: 400px;
+    max-height: 670px;
     overflow-y: auto; /* Enable vertical scrollbar */
     scrollbar-width: thin; /* Specify the width of the scrollbar */
     scrollbar-color: orange rgba(0, 0, 0, 0.4); /* Define the color of the scrollbar */
 }
 
-
 .home .content .content-more img {
+    position: static;
+    width: 100px; /* Set the width of the image to fill the div */
+    height: 100px; /* Set the height of the image to fill the div */
+    object-fit: cover; /* Maintain aspect ratio and cover the entire space */
+}
+
+.home .content .content-more .banner-img {
     position: static;
     width: 100%; /* Set the width of the image to fill the div */
     height: 100px; /* Set the height of the image to fill the div */
+    object-fit: cover; /* Maintain aspect ratio and cover the entire space */
+}
+
+.home .content .content-more .bigger-img {
+    position: static;
+    width: 100%; /* Set the width of the image to fill the div */
+    height: 100%; /* Set the height of the image to fill the div */
     object-fit: cover; /* Maintain aspect ratio and cover the entire space */
 }
 
@@ -320,6 +333,26 @@ section{
     transition-property: clip-path;
 }
 
+@media (max-width: 1435px) {
+    .home .content .content-more {
+        max-width: 40%; /* Set a maximum width for the content-more section as a percentage */
+        /*max-height: 55%;*/
+    }
+}
+
+@media (max-width: 1302px) {
+    .home .content .content-more {
+        max-width: 30%; /* Set a maximum width for the content-more section as a percentage */
+        /*max-height: 55%;*/
+    }
+}
+
+@media (max-height: 1302px) {
+    .home .content .content-more {
+        max-height: 70%;
+    }
+}
+
 /* resizable window */
 @media (max-width: 1040px){
     header {
@@ -344,6 +377,11 @@ section{
         justify-content: center;
         align-items: center;
         background: rgba(1, 1, 1, 0.5);
+    }
+
+    .home .content .content-more {
+        max-width: 50%; /* Set a maximum width for the content-more section as a percentage */
+        max-height: 55%;
     }
 
     header .navigation .navigation-items a{
