@@ -167,7 +167,8 @@ section{
     left: 50%; /* Position container at the center horizontally */
     transform: translateX(-50%); /* Center the container horizontally */
     background-color: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* blur for safari (mac) */
+    backdrop-filter: blur(10px); /* blur for other browsers */
     z-index: 999; /* Ensure the container appears above other elements */
 
     /* Add scrollbar styling */
