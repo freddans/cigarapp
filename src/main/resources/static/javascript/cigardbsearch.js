@@ -41,7 +41,7 @@ function filterCigarsByBrand(keyword) {
     cigars.forEach(function (cigar) {
         const brand = cigar.querySelector("td:nth-child(4)").textContent.toLowerCase(); // Corrected query selector for brand
         if (brand.includes(keyword.toLowerCase())) {
-            cigar.style.display = "table-row";
+            cigar.style.display = "table-row";g
         } else {
             cigar.style.display = "none";
         }
