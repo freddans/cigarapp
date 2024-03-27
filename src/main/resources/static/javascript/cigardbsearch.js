@@ -9,6 +9,22 @@ function searchCigars() {
     }
 }
 
+// Function to adjust the position of the cigar profile container when scrolling
+window.onscroll = function() { adjustProfileContainerPosition(); };
+
+function adjustProfileContainerPosition() {
+    var profileContainer = document.getElementById('cigarProfileContainer');
+    var tableRect = document.querySelector('table').getBoundingClientRect();
+    var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    profileContainer.style.top = Math.max(50, tableRect.top - scrollTop) + 'px';
+}
+
+// Add event listener when DOM content is loaded
+document.addEventListener('DOMContentLoaded', function () {
+    // Add event listener for input field
+    var searchInput = document.getElementById('searchInput');
+    searchInput.addEventListener('keyup', searchCigars);
+});
 
 function filterCigarsByNameOrBrand(keyword) {
     const cigars = document.querySelectorAll("#cigarTableBody tr");

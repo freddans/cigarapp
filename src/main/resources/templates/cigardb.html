@@ -30,11 +30,6 @@
             visibility: hidden;
         }
 
-        .invisible2 {
-            display: none;
-            visibility: hidden;
-        }
-
         /* Add custom style for selected row */
         .selected {
             background-color: #f0f0f0;
@@ -71,11 +66,11 @@
 <body>
 
 <header>
-    <a href="/test" class="brand">lounge database</a>
+    <a href="/" class="brand">lounge database</a>
     <div class="menu-btn">
         <div class="navigation">
             <div class="navigation-items">
-                <a href="/test">Main</a>
+                <a href="/">Main</a>
                 <a href="/cigardb">CigarDB</a>
                 <a href="#">Contact</a>
                 <a href="#">Login/Signup</a>
@@ -84,16 +79,12 @@
     </div> <!-- /menu-btn -->
 </header>
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
 <!-- Search bar -->
-<center><input type="text" id="searchInput" align="center" onkeyup="searchCigars()" placeholder="Search for cigars..." data-brand="$cigar.brand}"></center>
+<div class="search-container">
+    <input type="text" id="searchInput" placeholder="Search for cigars or brand..." data-brand="$cigar.brand}">
+</div>
 
+<!-- head of table -->
 <table>
     <thead>
     <tr>
@@ -119,7 +110,9 @@
             <span class="invisible" th:text="${cigar.brand}" th:title="${cigar.profilePicture}"></span>
 
         </td>
-        &nbsp;
+        <!-- space between searchbard and table -->
+<!--        &nbsp;-->
+        <!-- //space between searchbard and table -->
         <td><img th:src="${cigar.originImagePath}" alt="Origin Image" width="50" height="30" th:title="${cigar.origin}">
         <td th:text="${cigar.price}"></td>
         <td th:text="${cigar.boxPrice}"></td>

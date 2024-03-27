@@ -35,11 +35,12 @@ var sliderNav = function(manual) {
     });
 
 
-// Function to toggle visibility of extra content
+// Function to toggle visibility of extra content and handle container close
 function changeReadMore(buttonId, contentId) {
     const mycontent = document.getElementById(contentId);
     const mybutton = document.getElementById(buttonId);
     const readMoreContainer = mybutton.parentElement;
+    const readMoreBox = document.getElementById('readMoreContainerBox');
 
     // Toggle the visibility of the hidden content
     mycontent.classList.toggle('hidden');
@@ -49,14 +50,17 @@ function changeReadMore(buttonId, contentId) {
         mybutton.textContent = 'Read More';
         mycontent.style.display = 'none';
         mybutton.style.zIndex = 'auto'; // Set z-index back to auto when content is hidden
+        readMoreBox.style.display = 'none'; // Hide the read more container
     } else {
         mybutton.textContent = 'Read Less';
         mycontent.style.display = 'block';
         const contentHeight = mycontent.clientHeight;
         readMoreContainer.style.marginBottom = contentHeight + 'px'; // Adjust margin based on content height
         mybutton.style.zIndex = '999'; // Set a higher z-index when content is shown
+        readMoreBox.style.display = 'block'; // Show the read more container
     }
 }
+
 
 // Add event listeners to all "Read More" buttons
 document.addEventListener('DOMContentLoaded', function () {

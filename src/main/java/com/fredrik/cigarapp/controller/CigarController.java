@@ -23,51 +23,36 @@ public class CigarController {
         this.service = service;
     }
 
-    @GetMapping({"/o", "/viewCigarList", "/viewCigarBrandList"})
-    public String viewAllCigars(Model model, @ModelAttribute("message") String message,
-                                @RequestParam(name = "brand", required = false) String selectedBrand) {
-        if (selectedBrand != null && !selectedBrand.isEmpty()) {
-            List<Cigar> cigarsByBrand = service.getCigarsByBrand(selectedBrand);
-            model.addAttribute("list", cigarsByBrand);
-        } else {
-            model.addAttribute("list", service.getAllCigars());
-        }
-        model.addAttribute("brands", service.getAllBrands());
-        model.addAttribute("message", message);
-        return "ViewCigarList";
-    }
-
-    @GetMapping("/")
-    public String test(Model model) {
-        List<Cigar> cigars = service.getAllCigars();
-        model.addAttribute("list", cigars);
-        return "ViewCigarList";
-    }
-
+    // POSTMAN
+    // Add one single cigar
     @PostMapping("/add")
     public ResponseEntity<Cigar> save(@RequestBody Cigar cigar) {
         service.save(cigar);
         return ResponseEntity.ok(cigar);
     }
 
+    // Add multiple cigars by list in postman
     @PostMapping("/addm")
     public ResponseEntity<List<Cigar>> addMultipleCigars(@RequestBody List<Cigar> cigars) {
         List<Cigar> multipleCigars = service.saveMultipleCigars(cigars);
         return ResponseEntity.ok(multipleCigars);
     }
 
+    // View list of all cigars
     @GetMapping("/cigars")
     public ResponseEntity<List<Cigar>> getCigars() {
         List<Cigar> cigars = service.getAllCigars();
         return ResponseEntity.ok(cigars);
     }
 
+    // View list of all brands
     @GetMapping("/brands")
     public ResponseEntity<List<String>> getBrands() {
         List<String> cigarBrands = service.getAllBrands();
         return ResponseEntity.ok(cigarBrands);
     }
 
+    // View list of all cigars of specific brand
     @GetMapping("brands/{brand}")
     public ResponseEntity<List<Cigar>> getBrandsByBrand(@PathVariable("brand") String brand) {
         List<Cigar> test = new ArrayList<>();
@@ -82,6 +67,7 @@ public class CigarController {
         return ResponseEntity.ok(test);
     }
 
+    // View favorites sorted by name
     @GetMapping("/favorites")
     @ResponseBody
     public ResponseEntity<List<String>> getFavoriteOf() {
@@ -102,18 +88,8 @@ public class CigarController {
 
         return ResponseEntity.ok(favoriteCigars);
     }
-    @GetMapping("/edit")
-    public String edit(Model model) {
-        List<Cigar> cigarList = new ArrayList<>();
-        for (Cigar cigar : service.getAllCigars()) {
-            cigarList.add(cigar);
-        }
-        model.addAttribute("list", cigarList);
 
-        return "EditCigar";
-    }
-
-    // get Cigar by Id
+    // get Cigar by Id in postman
     @GetMapping("/cigar/{id}")
     @ResponseBody
     public Cigar getCigarById(@PathVariable Long id) {
@@ -219,7 +195,7 @@ public class CigarController {
     }
 
 
-    // Force
+    // Force - only used when cigars are added without origin
 //    @PutMapping("/forceFlag")
 //    public void force() {
 //        List<Cigar> cigarList = service.getAllCigars();
@@ -242,39 +218,18 @@ public class CigarController {
 
 
     // WEBPAGE
-    @GetMapping("/main")
-    public String mainPage() {
-        return "MainPage";
+    @GetMapping("/")
+    public String mainPage(Model model) {
+        return "index";
     }
 
-    @GetMapping("/test")
-    public String testPage(Model model) {
-        return "TestPage";
-    }
-
-    @GetMapping("/toggleModal")
-    public String toggleModal(Model model) {
-        return "modalcontent :: modal";
-    }
 
     // Test for table
     @GetMapping("/cigardb")
     public String getCigarDbPage(Model model) {
         model.addAttribute("showModal", true);
         model.addAttribute("cigars", service.getAllCigars());
-        return "CigarDB";
+        return "cigardb";
     }
-
-    // cigarprofile webtest
-    @GetMapping("/data")
-    public String getData() {
-        return "{\"name\":\"John\", \"age\":30}";
-    }
-
-    @GetMapping("/home")
-    public String home() {
-        return "home";
-    }
-
 
 }
