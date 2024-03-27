@@ -163,12 +163,34 @@ section{
     padding-right: 20px;
     border-radius: 7px;
     position: fixed;
-    top: 40%; /* Adjust the top position based on your header height */
+    top: 30%; /* Adjust the top position based on your header height */
     left: 50%; /* Position container at the center horizontally */
     transform: translateX(-50%); /* Center the container horizontally */
     background-color: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(10px);
     z-index: 999; /* Ensure the container appears above other elements */
+
+    /* Add scrollbar styling */
+    max-height: 400px;
+    overflow-y: auto; /* Enable vertical scrollbar */
+    scrollbar-width: thin; /* Specify the width of the scrollbar */
+    scrollbar-color: orange rgba(0, 0, 0, 0.4); /* Define the color of the scrollbar */
+
+}
+
+/* Custom scrollbar design for WebKit browsers */
+.home .content .content-more::-webkit-scrollbar {
+    width: 10px; /* Set the width of the scrollbar */
+}
+
+.home .content .content-more::-webkit-scrollbar-thumb {
+    background-color: orange; /* Set the color of the thumb (handle) */
+    border-radius: 10px; /* Add rounded corners to the thumb */
+}
+
+.home .content .content-more::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0.4); /* Set the color of the track (bar) */
+    border-radius: 10px; /* Add rounded corners to the track */
 }
 
 /* read more button div design */
