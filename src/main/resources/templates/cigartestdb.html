@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cigar Database</title>
+    <!-- Add your CSS links here -->
+    <link rel="stylesheet" href="/css/cigardb.css">
+    <style>
+        /* Add custom styles for clickable headers */
+        th {
+            cursor: pointer; /* Change cursor to pointer to indicate clickable */
+        }
+
+        /* Restore mouseover effect */
+        th:hover {
+            background-color: #ddd;
+        }
+
+        #closeBtn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            cursor: pointer;
+        }
+
+        .invisible {
+            display: none;
+            visibility: hidden;
+        }
+
+        /* Add custom style for selected row */
+        .selected {
+            background-color: #f0f0f0;
+        }
+
+        /* Style for cigar profile container */
+        #cigarProfileContainer {
+            display: none;
+            padding: 20px;
+            border: 1px solid #ccc;
+            position: fixed;
+            top: 50px; /* Adjust the top position based on your header height */
+            left: 50%; /* Position container at the center horizontally */
+            transform: translateX(-50%); /* Center the container horizontally */
+            background-color: white;
+            z-index: 999; /* Ensure the container appears above other elements */
+        }
+
+        /* CSS styles for cigar profile image */
+        #cigarProfileImage {
+            float: left; /* Float the image to the left */
+            margin-right: 20px; /* Add margin to create space between image and text */
+            width: 100px; /* Adjust the width of the image */
+            height: 100px; /* Adjust the height of the image */
+        }
+
+        /* CSS styles for cigar profile text */
+        #cigarProfileText {
+            overflow: hidden; /* Ensure text does not overflow the container */
+            margin-left: 120px; /* Adjust the margin to create space between image and text */
+        }
+        .table-container {
+            max-height: 400px; /* Set max height for the scrolling body */
+            overflow-y: auto; /* Enable vertical scrolling */
+        }
+    </style>
+</head>
+<body>
+
+<!-- Search bar -->
+<div class="search-container">
+    <input type="text" id="searchInput" placeholder="Search for cigars or brand..." data-brand="$cigar.brand}">
+</div>
+
+<!-- Container for the table -->
+<div class="table-container">
+    <!-- head of table -->
+    <table>
+        <thead class="thhead">
+        <tr>
+            <th onclick="sortTable(0)">Image</th>
+            <th onclick="sortTable(9)">Id</th>
+            <th onclick="sortTable(1)">Name</th>
+            <th onclick="sortTable(2)">Brand</th>
+            <th onclick="sortTable(3)">Origin</th>
+            <th onclick="sortTable(4)">Price</th>
+            <th onclick="sortTable(5)">Box</th>
+            <th onclick="sortTable(6)">Contains</th>
+            <th onclick="sortTable(7)">Status</th>
+            <th onclick="sortTable(8)">Rating</th>
+        </tr>
+        </thead>
+    </table>
+</div>
+
+<!-- Container for the table body -->
+<div class="table-container">
+    <table>
+        <tbody class="infodiv" id="cigarTableBody">
+        <!-- Iterate over cigars and populate the table rows -->
+        <tr th:each="cigar : ${cigars}" onclick="showCigarProfile(this)">
+            <td><img th:src="${cigar.imagePath}" alt="Cigar Image" width="30" height="30"></td>
+            <td th:text="${cigar.id}"></td>
+            <td th:text="${cigar.name}"></td>
+            <td><img th:src="${cigar.brandImagePath}" alt="Brand Image" width="50" height="30" th:title="${cigar.brand}">
+                <span class="invisible" th:text="${cigar.brand}" th:title="${cigar.profilePicture}"></span>
+
+            </td>
+            <td><img th:src="${cigar.originImagePath}" alt="Origin Image" width="50" height="30" th:title="${cigar.origin}"></td>
+            <td th:text="${cigar.price}"></td>
+            <td th:text="${cigar.boxPrice}"></td>
+            <td th:text="${cigar.boxAmount}"></td>
+            <td th:text="${cigar.status}"></td>
+            <td th:text="${cigar.rating}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Your existing cigar profile container -->
+<div id="cigarProfileContainer">
+    <span id="closeBtn" onclick="closeCigarProfile()">x</span>
+    <div id="cigarProfileContent">
+        <img id="cigarProfileImage" src="" alt="Cigar Profile Picture" width="55" height="330">
+        <div id="cigarProfileText"></div>
+    </div>
+</div>
+
+<script src="/javascript/cigardbsearch.js"></script>
+<script>
+
+    function showCigarProfile(row) {
+        // Remove 'selected' class from all rows
+        var rows = document.querySelectorAll("#cigarTableBody tr");
+        rows.forEach(function (row) {
+            row.classList.remove('selected');
+        });
+
+        // Add 'selected' class to the clicked row
+        row.classList.add('selected');
+
+        // Get cigar data from the clicked row
+        var id = row.cells[1].textContent; // Assuming id is in the second cell
+        var name = row.cells[2].textContent; // Assuming name is in the third cell
+        // var brand = row.cells[3].textContent; // Assuming brand is in the fourth cell
+        var brand = row.cells[3].querySelector('.invisible').textContent;
+        var origin = row.cells[4].querySelector('img').getAttribute('title'); // Assuming origin is in the fifth cell
+        var price = row.cells[5].textContent; // Assuming price is in the sixth cell
+        var boxPrice = row.cells[6].textContent; // Assuming boxPrice is in the seventh cell
+        var boxAmount = row.cells[7].textContent; // Assuming boxAmount is in the eighth cell
+        var status = row.cells[8].textContent; // Assuming status is in the ninth cell
+        var rating = row.cells[9].textContent; // Assuming rating is in the tenth cell
+        var profilePicture = row.cells[3].querySelector('.invisible').getAttribute('title');
+
+        // Display the cigar profile data in the cigarProfileContent div
+        var cigarProfileContent = document.getElementById('cigarProfileContent');
+        cigarProfileContent.innerHTML = getCigarProfileById(id, name, brand, origin, price, boxPrice, boxAmount, status, rating, profilePicture);
+
+        // Show the cigar profile container
+        var cigarProfileContainer = document.getElementById('cigarProfileContainer');
+        cigarProfileContainer.style.display = 'block';
+    }
+
+    // Example function to fetch cigar profile data by ID
+    function getCigarProfileById(id, name, brand, origin, price, boxPrice, boxAmount, status, rating, profilePicture) {
+        // Example implementation
+        // This function should create the HTML content for the cigar profile based on the provided data
+        // You can format the content as needed
+        var profileContent = "<div id='cigarProfileImage'><img src='" + profilePicture + "' alt='Cigar Profile Picture' width='55' height='330'></div>";
+        profileContent += "<div id='cigarProfileText'>";
+        profileContent += "<h2>Cigar Profile for ID: " + id + "</h2>";
+        profileContent += "<p>Name: " + name + "</p>";
+        profileContent += "<p>Brand: " + brand + "</p>";
+        profileContent += "<p>Origin: " + origin + "</p>";
+        profileContent += "<p>Price: " + price + "</p>";
+        profileContent += "<p>Box Price: " + boxPrice + "</p>";
+        profileContent += "<p>Box Amount: " + boxAmount + "</p>";
+        profileContent += "<p>Status: " + status + "</p>";
+        profileContent += "<p>Rating: " + rating + "</p>";
+        profileContent += "</div>"
+
+        return profileContent;
+    }
+
+    // Example usage:
+    // var cigarProfile = getCigarProfileById(id, name, brand, origin, price, boxPrice, boxAmount, status, rating);
+
+    // Function to adjust the position of the cigar profile container when scrolling
+    window.onscroll = function () {
+        adjustProfileContainerPosition();
+    };
+
+    function adjustProfileContainerPosition() {
+        var profileContainer = document.getElementById('cigarProfileContainer');
+        var tableRect = document.querySelector('table').getBoundingClientRect();
+        var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        profileContainer.style.top = Math.max(50, tableRect.top - scrollTop) + 'px';
+    }
+
+    function closeCigarProfile() {
+        var cigarProfileContainer = document.getElementById('cigarProfileContainer');
+        cigarProfileContainer.style.display = 'none'; // Hide the container
+    }
+
+</script>
+
+</body>
+</html>

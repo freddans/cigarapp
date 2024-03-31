@@ -75,10 +75,88 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
+// /* contact */
+// var contactLink = document.getElementById('contactLink');
+//
+// // Get the contact container
+// var contactContainer = document.getElementById('contactContainer');
+//
+// // Add click event listener to the contact link
+// contactLink.addEventListener('click', function(event) {
+//     // Prevent the default behavior of the link
+//     event.preventDefault();
+//
+//     // Get the computed style of the contact container
+//     var contactContainerStyle = window.getComputedStyle(contactContainer);
+//
+//     // Check if the container is currently visible
+//     var isVisible = contactContainerStyle.display !== 'none';
+//
+//     // Toggle the display of the contact container
+//     contactContainer.style.display = isVisible ? 'none' : 'block';
+//
+//     // Reset the message container
+//     document.getElementById('messageContainer').innerText = '';
+// });
+//
+// // Add submit event listener to the contact form
+// document.getElementById('contactForm').addEventListener('submit', function(event) {
+//     event.preventDefault(); // Prevent form submission
+//
+//     // Get form data
+//     var name = document.getElementById('name').value;
+//     var email = document.getElementById('email').value;
+//     var message = document.getElementById('message').value;
+//
+//     // Construct mailto link
+//     var mailtoLink = 'mailto:flundell89@gmail.com' +
+//         '?subject=' + encodeURIComponent('Message from ' + name) +
+//         '&body=' + encodeURIComponent('From: ' + email + '\n\n' + message);
+//
+//     // Open default email client with mailto link
+//     window.open(mailtoLink, '_blank');
+//
+//     // Display "Message sent" message (optional)
+//     document.getElementById('messageContainer').innerText = 'Message sent';
+// });
+//
+// // Login
+// var loginLink = document.getElementById('loginLink');
+// var signupButton = document.getElementById('signupButton');
+// var loginContainer = document.getElementById('loginContainer');
+// var signupContainer = document.getElementById('signupContainer');
+//
+// // Add click event listener to the login link
+// loginLink.addEventListener('click', function(event) {
+//     // Prevent the default behavior of the link
+//     event.preventDefault();
+//
+//     // Check if the login container is already visible
+//     var loginContainerVisible = window.getComputedStyle(loginContainer).display !== 'none';
+//
+//     // If the login container is not visible, show it
+//     if (!loginContainerVisible) {
+//         loginContainer.style.display = 'block';
+//     }
+//
+//     // Hide the signup container
+//     signupContainer.style.display = 'none';
+// });
+//
+// // Add click event listener to the signup button
+// signupButton.addEventListener('click', function(event) {
+//     // Prevent the default behavior of the button
+//     event.preventDefault();
+//
+//     // Hide the login container
+//     loginContainer.style.display = 'none';
+//
+//     // Toggle the display of the signup container
+//     signupContainer.style.display = signupContainer.style.display === 'none' ? 'block' : 'none';
+// });
+
 /* contact */
 var contactLink = document.getElementById('contactLink');
-
-// Get the contact container
 var contactContainer = document.getElementById('contactContainer');
 
 // Add click event listener to the contact link
@@ -86,68 +164,36 @@ contactLink.addEventListener('click', function(event) {
     // Prevent the default behavior of the link
     event.preventDefault();
 
-    // Get the computed style of the contact container
-    var contactContainerStyle = window.getComputedStyle(contactContainer);
+    // Close login container if open
+    loginContainer.style.display = 'none';
 
-    // Check if the container is currently visible
-    var isVisible = contactContainerStyle.display !== 'none';
+    // Close signup container if open
+    signupContainer.style.display = 'none';
 
     // Toggle the display of the contact container
-    contactContainer.style.display = isVisible ? 'none' : 'block';
+    if (contactContainer.style.display === 'block') {
+        contactContainer.style.display = 'none';
+    } else {
+        contactContainer.style.display = 'block';
+    }
 
     // Reset the message container
     document.getElementById('messageContainer').innerText = '';
 });
 
-// Add submit event listener to the contact form
-document.getElementById('contactForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent form submission
+// Add click event listener to the close button in the contact container
+document.querySelector('#contactContainer input[value="Close"]').addEventListener('click', function(event) {
+    // Prevent the default behavior of the button
+    event.preventDefault();
 
-    // Get form data
-    var name = document.getElementById('name').value;
-    var email = document.getElementById('email').value;
-    var message = document.getElementById('message').value;
-
-    // Construct mailto link
-    var mailtoLink = 'mailto:flundell89@gmail.com' +
-        '?subject=' + encodeURIComponent('Message from ' + name) +
-        '&body=' + encodeURIComponent('From: ' + email + '\n\n' + message);
-
-    // Open default email client with mailto link
-    window.open(mailtoLink, '_blank');
-
-    // Display "Message sent" message (optional)
-    document.getElementById('messageContainer').innerText = 'Message sent';
+    // Close the contact container
+    contactContainer.style.display = 'none';
 });
 
-/* login */
-// <!-- Login container -->
-// var loginLink = document.getElementById('loginLink');
-//
-// // Get the contact container
-// var loginContainer = document.getElementById('loginContainer');
-//
-// // Add click event listener to the contact link
-// loginLink.addEventListener('click', function(event) {
-//     // Prevent the default behavior of the link
-//     event.preventDefault();
-//
-//     // Get the computed style of the contact container
-//     var contactContainerStyle = window.getComputedStyle(loginContainer);
-//
-//     // Check if the container is currently visible
-//     var isVisible = contactContainerStyle.display !== 'none';
-//
-//     // Toggle the display of the contact container
-//     loginContainer.style.display = isVisible ? 'none' : 'block';
-//
-//     // Reset the message container
-//     document.getElementById('messageContainer').innerText = '';
-// });
-
+// Login
 var loginLink = document.getElementById('loginLink');
-var signupButton = document.getElementById('signupButton');
 var loginContainer = document.getElementById('loginContainer');
+var signupButton = document.getElementById('signupButton');
 var signupContainer = document.getElementById('signupContainer');
 
 // Add click event listener to the login link
@@ -155,11 +201,13 @@ loginLink.addEventListener('click', function(event) {
     // Prevent the default behavior of the link
     event.preventDefault();
 
-    // Check if the login container is already visible
-    var loginContainerVisible = window.getComputedStyle(loginContainer).display !== 'none';
+    // Close contact container if open
+    contactContainer.style.display = 'none';
 
-    // If the login container is not visible, show it
-    if (!loginContainerVisible) {
+    // Toggle the display of the login container
+    if (loginContainer.style.display === 'block') {
+        loginContainer.style.display = 'none';
+    } else {
         loginContainer.style.display = 'block';
     }
 
@@ -172,6 +220,9 @@ signupButton.addEventListener('click', function(event) {
     // Prevent the default behavior of the button
     event.preventDefault();
 
+    // Close contact container if open
+    contactContainer.style.display = 'none';
+
     // Hide the login container
     loginContainer.style.display = 'none';
 
@@ -179,4 +230,21 @@ signupButton.addEventListener('click', function(event) {
     signupContainer.style.display = signupContainer.style.display === 'none' ? 'block' : 'none';
 });
 
+// Add click event listener to the close button in the login container
+document.querySelector('#loginContainer input[value="Close"]').addEventListener('click', function(event) {
+    // Prevent the default behavior of the button
+    event.preventDefault();
+
+    // Close the login container
+    loginContainer.style.display = 'none';
+});
+
+// Add click event listener to the close button in the signup container
+document.querySelector('#signupContainer input[value="Close"]').addEventListener('click', function(event) {
+    // Prevent the default behavior of the button
+    event.preventDefault();
+
+    // Close the signup container
+    signupContainer.style.display = 'none';
+});
 
