@@ -102,9 +102,6 @@
         <div class="navigation">
             <div class="navigation-items">
                 <a href="/">Main</a>
-                <a href="/cigardb">CigarDB</a>
-                <a href="#">Contact</a>
-                <a href="#">Login/Signup</a>
             </div> <!-- /navigation items -->
         </div> <!-- /navigation -->
     </div> <!-- /menu-btn -->
@@ -120,22 +117,22 @@
     <thead id="tableHead">
     <tr>
         <th onclick="sortTable(0)">Image</th>
-        <th onclick="sortTable(1)">Id</th>
-        <th onclick="sortTable(2)">Name</th>
-        <th onclick="sortTable(3)">Brand</th>
-        <th onclick="sortTable(4)">Origin</th>
-        <th onclick="sortTable(5)">Price</th>
-        <th onclick="sortTable(6)">Box</th>
-        <th onclick="sortTable(7)">Contains</th>
-        <th onclick="sortTable(8)">Status</th>
-        <th onclick="sortTable(9)">Rating</th>
+<!--        <th onclick="sortTable(1)">Id</th>-->
+        <th onclick="sortTable(1)">Name</th>
+        <th onclick="sortTable(2)">Brand</th>
+        <th onclick="sortTable(3)">Origin</th>
+        <th onclick="sortTable(4)">Price</th>
+        <th onclick="sortTable(5)">Box</th>
+        <th onclick="sortTable(6)">Contains</th>
+        <th onclick="sortTable(7)">Status</th>
+        <th onclick="sortTable(8)">Rating</th>
     </tr>
     </thead>
     <tbody id="cigarTableBody">
     <!-- Iterate over cigars and populate the table rows -->
     <tr th:each="cigar : ${cigars}" onclick="showCigarProfile(this)">
         <td><img th:src="${cigar.imagePath}" alt="Cigar Image" width="30" height="30"></td>
-        <td th:text="${cigar.id}"></td>
+<!--        <td th:text="${cigar.id}"></td>-->
         <td th:text="${cigar.name}"></td>
         <td><img th:src="${cigar.brandImagePath}" alt="Brand Image" width="50" height="30" th:title="${cigar.brand}">
             <span class="invisible" th:text="${cigar.brand}" th:title="${cigar.profilePicture}"></span>

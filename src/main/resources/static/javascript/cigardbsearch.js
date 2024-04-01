@@ -177,31 +177,20 @@ function sortTable(columnIndex) {
             x = rows[i].getElementsByTagName("TD")[columnIndex];
             y = rows[i + 1].getElementsByTagName("TD")[columnIndex];
             // Check if the two rows should switch place, based on the direction, and if so, mark as a switch and break the loop
-            if (columnIndex === 1) { // Sort by ID
-                if (dir === "asc") {
-                    if (parseInt(x.textContent) > parseInt(y.textContent)) {
-                        shouldSwitch = true;
-                        break;
-                    }
-                } else if (dir === "desc") {
-                    if (parseInt(x.textContent) < parseInt(y.textContent)) {
-                        shouldSwitch = true;
-                        break;
-                    }
-                }
-            } else if (columnIndex === 2) { // Sort by Name
-                if (dir === "asc") {
-                    if (x.textContent.toLowerCase() > y.textContent.toLowerCase()) {
-                        shouldSwitch = true;
-                        break;
-                    }
-                } else if (dir === "desc") {
-                    if (x.textContent.toLowerCase() < y.textContent.toLowerCase()) {
-                        shouldSwitch = true;
-                        break;
-                    }
-                }
-            } else if (columnIndex === 3) { // Sort by Brand
+            // if (columnIndex === 1) { // Sort by ID
+            //     if (dir === "asc") {
+            //         if (parseInt(x.textContent) > parseInt(y.textContent)) {
+            //             shouldSwitch = true;
+            //             break;
+            //         }
+            //     } else if (dir === "desc") {
+            //         if (parseInt(x.textContent) < parseInt(y.textContent)) {
+            //             shouldSwitch = true;
+            //             break;
+            //         }
+            //     }
+            // }
+            if (columnIndex === 1) { // Sort by Name
                 if (dir === "asc") {
                     if (x.textContent.toLowerCase() > y.textContent.toLowerCase()) {
                         shouldSwitch = true;
@@ -213,7 +202,19 @@ function sortTable(columnIndex) {
                         break;
                     }
                 }
-            } else if (columnIndex === 5) { // Sort by Price
+            } else if (columnIndex === 2) { // Sort by Brand
+                if (dir === "asc") {
+                    if (x.textContent.toLowerCase() > y.textContent.toLowerCase()) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                } else if (dir === "desc") {
+                    if (x.textContent.toLowerCase() < y.textContent.toLowerCase()) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+            } else if (columnIndex === 4) { // Sort by Price
                 if (dir === "asc") {
                     // Parse price strings to double for comparison
                     var numX = parseFloat(x.textContent.replace(".", "").replace(",", "."));
@@ -231,7 +232,7 @@ function sortTable(columnIndex) {
                         break;
                     }
                 }
-            } else if (columnIndex === 6) { // Sort by boxPrice
+            } else if (columnIndex === 5) { // Sort by boxPrice
                 if (dir === "asc") {
                     // Parse price strings to double for comparison
                     var numX = parseFloat(x.textContent.replace(".", "").replace(",", "."));
@@ -249,7 +250,7 @@ function sortTable(columnIndex) {
                         break;
                     }
                 }
-            } else if (columnIndex === 7) { // Sort by Price
+            } else if (columnIndex === 6) { // Sort by Price
                 if (dir === "asc") {
                     // Parse price strings to double for comparison
                     var numX = parseFloat(x.textContent.replace(".", "").replace(",", "."));
@@ -267,7 +268,7 @@ function sortTable(columnIndex) {
                         break;
                     }
                 }
-            } else if (columnIndex === 8) { // Sort by Status
+            } else if (columnIndex === 7) { // Sort by Status
                 if (dir === "asc") {
                     if (x.textContent.toLowerCase() === "not smoked" && y.textContent.toLowerCase() === "smoked") {
                         shouldSwitch = true;
@@ -279,7 +280,7 @@ function sortTable(columnIndex) {
                         break;
                     }
                 }
-            } else if (columnIndex === 9) { // Sort by Price
+            } else if (columnIndex === 8) { // Sort by Price
                 if (dir === "asc") {
                     // Parse price strings to double for comparison
                     var numX = parseFloat(x.textContent.replace("?", "0").replace(",", "."));
