@@ -61,6 +61,37 @@
             overflow: hidden; /* Ensure text does not overflow the container */
             margin-left: 120px; /* Adjust the margin to create space between image and text */
         }
+
+        /* Ensure only tbody has a scrollbar */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            table-layout: fixed;
+        }
+
+        thead, tbody {
+            display: block;
+        }
+
+        tbody {
+            max-height: calc(100vh - 174px);
+            overflow-y: auto;
+
+
+        }
+
+        tr {
+            width: 100%;
+            display: table;
+            table-layout: fixed;
+        }
+
+        th, td {
+            width: 12.5%; /* Adjust as needed */
+            text-align: left;
+            padding: 8px;
+        }
+
     </style>
 </head>
 <body>
@@ -86,18 +117,18 @@
 
 <!-- head of table -->
 <table>
-    <thead>
+    <thead id="tableHead">
     <tr>
         <th onclick="sortTable(0)">Image</th>
-        <th onclick="sortTable(9)">Id</th>
-        <th onclick="sortTable(1)">Name</th>
-        <th onclick="sortTable(2)">Brand</th>
-        <th onclick="sortTable(3)">Origin</th>
-        <th onclick="sortTable(4)">Price</th>
-        <th onclick="sortTable(5)">Box</th>
-        <th onclick="sortTable(6)">Contains</th>
-        <th onclick="sortTable(7)">Status</th>
-        <th onclick="sortTable(8)">Rating</th>
+        <th onclick="sortTable(1)">Id</th>
+        <th onclick="sortTable(2)">Name</th>
+        <th onclick="sortTable(3)">Brand</th>
+        <th onclick="sortTable(4)">Origin</th>
+        <th onclick="sortTable(5)">Price</th>
+        <th onclick="sortTable(6)">Box</th>
+        <th onclick="sortTable(7)">Contains</th>
+        <th onclick="sortTable(8)">Status</th>
+        <th onclick="sortTable(9)">Rating</th>
     </tr>
     </thead>
     <tbody id="cigarTableBody">
@@ -111,7 +142,7 @@
 
         </td>
         <!-- space between searchbard and table -->
-<!--        &nbsp;-->
+        <!--        &nbsp;-->
         <!-- //space between searchbard and table -->
         <td><img th:src="${cigar.originImagePath}" alt="Origin Image" width="50" height="30" th:title="${cigar.origin}">
         <td th:text="${cigar.price}"></td>

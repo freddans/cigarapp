@@ -137,3 +137,63 @@ tbody td {
 tbody tr:hover {
     background-color: #ddd;
 }
+
+/* TESTI NFLYTT */
+/* Add custom styles for clickable headers */
+th {
+    cursor: pointer; /* Change cursor to pointer to indicate clickable */
+}
+
+/* Restore mouseover effect */
+th:hover {
+    background-color: #ddd;
+}
+
+#closeBtn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+}
+
+.invisible {
+    display: none;
+    visibility: hidden;
+}
+
+/* Add custom style for selected row */
+.selected {
+    background-color: #f0f0f0;
+}
+
+/* Style for cigar profile container */
+#cigarProfileContainer {
+    display: none;
+    padding: 20px;
+    border: 1px solid #ccc;
+    position: fixed;
+    top: 50px; /* Adjust the top position based on your header height */
+    left: 50%; /* Position container at the center horizontally */
+    transform: translateX(-50%); /* Center the container horizontally */
+    background-color: white;
+    z-index: 999; /* Ensure the container appears above other elements */
+}
+
+/* CSS styles for cigar profile image */
+#cigarProfileImage {
+    float: left; /* Float the image to the left */
+    margin-right: 20px; /* Add margin to create space between image and text */
+    width: 100px; /* Adjust the width of the image */
+    height: 100px; /* Adjust the height of the image */
+}
+
+/* CSS styles for cigar profile text */
+#cigarProfileText {
+    overflow: hidden; /* Ensure text does not overflow the container */
+    margin-left: 120px; /* Adjust the margin to create space between image and text */
+}
+#table-container {
+    /*max-height: 1200px; !* Set max height for the scrolling body *!*/
+    max-height: calc(100vh - 174px);
+    overflow-y: auto; /* Enable vertical scrolling */
+}

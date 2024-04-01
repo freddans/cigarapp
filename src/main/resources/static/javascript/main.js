@@ -166,4 +166,3 @@ document.querySelector('#signupContainer input[value="Close"]').addEventListener
     // Close the signup container
     signupContainer.style.display = 'none';
 });
-
