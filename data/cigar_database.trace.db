@@ -404,3 +404,24 @@ org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
 	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
+2024-04-02 18:36:41.459464+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "MESSAGE CHARACTER VARYING(255)": "'messagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessageme... (1001)"; SQL statement:
+insert into contactpost (email,message,name,id) values (?,?,?,?) [22001-224]
+2024-04-02 18:36:56.044819+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "MESSAGE CHARACTER VARYING(255)": "'messagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessageme... (749)"; SQL statement:
+insert into contactpost (email,message,name,id) values (?,?,?,?) [22001-224]
+2024-04-02 18:37:04.209375+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "MESSAGE CHARACTER VARYING(255)": "'messagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessageme... (665)"; SQL statement:
+insert into contactpost (email,message,name,id) values (?,?,?,?) [22001-224]
+2024-04-02 18:37:07.558645+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "MESSAGE CHARACTER VARYING(255)": "'messagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessageme... (351)"; SQL statement:
+insert into contactpost (email,message,name,id) values (?,?,?,?) [22001-224]
+2024-04-02 18:37:19.530792+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "MESSAGE CHARACTER VARYING(255)": "'messagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessageme... (263)"; SQL statement:
+insert into contactpost (email,message,name,id) values (?,?,?,?) [22001-224]
+2024-04-02 18:37:22.985192+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "MESSAGE CHARACTER VARYING(255)": "'messagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessageme... (256)"; SQL statement:
+insert into contactpost (email,message,name,id) values (?,?,?,?) [22001-224]
+2024-04-02 18:37:43.073825+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "MESSAGE CHARACTER VARYING(255)": "'messagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessageme... (256)"; SQL statement:
+insert into contactpost (email,message,name,id) values (?,?,?,?) [22001-224]

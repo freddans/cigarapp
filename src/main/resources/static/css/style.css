@@ -144,6 +144,9 @@ section {
     height: 120px;
     color: #ffffff;
     resize: none;
+    overflow-y: auto; /* Add scrollbar when needed */
+    scrollbar-width: thin; /* Specify the width of the scrollbar */
+    scrollbar-color: orange rgba(0, 0, 0, 0.4); /* Define the color of the scrollbar */
 }
 
 .home .contact-container .button-container input[type="submit"] {
