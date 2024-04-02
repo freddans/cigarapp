@@ -61,6 +61,37 @@
             overflow: hidden; /* Ensure text does not overflow the container */
             margin-left: 120px; /* Adjust the margin to create space between image and text */
         }
+
+        /* Ensure only tbody has a scrollbar */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            table-layout: fixed;
+        }
+
+        thead, tbody {
+            display: block;
+        }
+
+        tbody {
+            max-height: calc(100vh - 174px);
+            overflow-y: auto;
+
+
+        }
+
+        tr {
+            width: 100%;
+            display: table;
+            table-layout: fixed;
+        }
+
+        th, td {
+            width: 12.5%; /* Adjust as needed */
+            text-align: left;
+            padding: 8px;
+        }
+
     </style>
 </head>
 <body>
@@ -71,9 +102,6 @@
         <div class="navigation">
             <div class="navigation-items">
                 <a href="/">Main</a>
-                <a href="/cigardb">CigarDB</a>
-                <a href="#">Contact</a>
-                <a href="#">Login/Signup</a>
             </div> <!-- /navigation items -->
         </div> <!-- /navigation -->
     </div> <!-- /menu-btn -->
@@ -86,10 +114,10 @@
 
 <!-- head of table -->
 <table>
-    <thead>
+    <thead id="tableHead">
     <tr>
         <th onclick="sortTable(0)">Image</th>
-        <th onclick="sortTable(9)">Id</th>
+<!--        <th onclick="sortTable(1)">Id</th>-->
         <th onclick="sortTable(1)">Name</th>
         <th onclick="sortTable(2)">Brand</th>
         <th onclick="sortTable(3)">Origin</th>
@@ -104,14 +132,14 @@
     <!-- Iterate over cigars and populate the table rows -->
     <tr th:each="cigar : ${cigars}" onclick="showCigarProfile(this)">
         <td><img th:src="${cigar.imagePath}" alt="Cigar Image" width="30" height="30"></td>
-        <td th:text="${cigar.id}"></td>
+<!--        <td th:text="${cigar.id}"></td>-->
         <td th:text="${cigar.name}"></td>
         <td><img th:src="${cigar.brandImagePath}" alt="Brand Image" width="50" height="30" th:title="${cigar.brand}">
             <span class="invisible" th:text="${cigar.brand}" th:title="${cigar.profilePicture}"></span>
 
         </td>
         <!-- space between searchbard and table -->
-<!--        &nbsp;-->
+        <!--        &nbsp;-->
         <!-- //space between searchbard and table -->
         <td><img th:src="${cigar.originImagePath}" alt="Origin Image" width="50" height="30" th:title="${cigar.origin}">
         <td th:text="${cigar.price}"></td>

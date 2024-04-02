@@ -7,7 +7,7 @@
     font-family: "Poppins", sans-serif;
 }
 
-header{
+header {
     z-index: 999;
     position: absolute;
     top: 0;
@@ -21,7 +21,7 @@ header{
 }
 
 /* LOUNGE/logo */
-header .brand{
+header .brand {
     color: #fff;
     font-size: 1.5rem;
     font-weight: 700;
@@ -29,15 +29,15 @@ header .brand{
     text-decoration: none;
 }
 
-header .brand:hover{
+header .brand:hover {
     color: #f08801;
 }
 
-header .navigation{
+header .navigation {
     position: relative;
 }
 
-header .navigation .navigation-items a{
+header .navigation .navigation-items a {
     position: relative;
     color: #fff;
     font-size: 1em;
@@ -54,7 +54,7 @@ header .navigation .navigation-items a{
 /*}*/
 
 /* line under link */
-header .navigation .navigation-items a:before{
+header .navigation .navigation-items a:before {
     content: '';
     position: absolute;
     background: #fff;
@@ -66,18 +66,18 @@ header .navigation .navigation-items a:before{
 }
 
 /* line under link while hover */
-header .navigation .navigation-items a:hover:before{
+header .navigation .navigation-items a:hover:before {
     width: 100%;
     background: #f08801;
 }
 
 /* pushing main small text, big text and button out */
-section{
+section {
     padding: 100px 200px;
 }
 
 /* Transition BG */
-.home{
+.home {
     position: relative;
     width: 100%;
     min-height: 100vh;
@@ -87,7 +87,7 @@ section{
     background: rgba(240, 136, 1, 36);
 }
 
-.home:before{
+.home:before {
     z-index: 777;
     content: '';
     position: absolute;
@@ -98,8 +98,270 @@ section{
     left: 0;
 }
 
+/* CONTACT BUTTON CONTAINER */
+.home .contact-container {
+
+    display: none;
+    border-radius: 7px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.4);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+
+/* header text "Contact" */
+.home .contact-container h2 {
+    margin-bottom: 20px;
+    color: #ffffff;
+
+}
+
+.home .contact-container input[type="text"],
+.home .contact-container input[type="email"],
+.home .contact-container textarea {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #f08801;
+    border-radius: 2px;
+    box-sizing: border-box;
+    font-size: 16px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+}
+/* where you write message */
+.home .contact-container textarea {
+    height: 120px;
+    color: #ffffff;
+    resize: none;
+}
+
+.home .contact-container .button-container input[type="submit"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 2px;
+    background-color: #f08801;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.home .contact-container .button-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+}
+
+.home .contact-container .button-container input[type="submit"] {
+    flex: 1;
+    margin-right: 3px; /* Adjust as needed */
+    margin-left: 3px;
+}
+
+.home .contact-container .button-container input[type="submit"]:hover {
+    background-color: #ffffff;
+    color: #f08801;
+}
+
+/* LOGIN/SIGNUP BUTTON CONTAINER */
+.home .login-container {
+    display: none;
+    border-radius: 7px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.4);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+
+/* header text "Contact" */
+.home .login-container h2 {
+    margin-bottom: 20px;
+    color: #ffffff;
+
+}
+.home .login-container input[type="text"],
+.home .login-container input[type="password"],
+.home .login-container textarea {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #f08801;
+    border-radius: 2px;
+    box-sizing: border-box;
+    font-size: 16px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+}
+/* where you write message */
+.home .login-container textarea {
+    height: 120px;
+    color: #ffffff;
+    resize: none;
+}
+.home .login-container .button-container input[type="submit"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 2px;
+    background-color: #f08801;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.home .login-container .button-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.home .login-container .button-container input[type="submit"] {
+    flex: 1;
+    margin-right: 5px; /* Adjust as needed */
+}
+
+.home .login-container .button-container input[type="submit"]:hover {
+    background-color: #ffffff;
+    color: #f08801;
+}
+
+/* SIGN UP BUTTON CONTENT */
+/* LOGIN/SIGNUP BUTTON CONTAINER */
+.home .signup-container {
+    display: none;
+    border-radius: 7px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.4);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+
+/* header text "Contact" */
+.home .signup-container h2 {
+    margin-bottom: 20px;
+    color: #ffffff;
+
+}
+.home .signup-container input[type="text"],
+.home .signup-container input[type="password"],
+.home .signup-container input[type="email"],
+.home .signup-container textarea {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #f08801;
+    border-radius: 2px;
+    box-sizing: border-box;
+    font-size: 16px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+}
+/* where you write message */
+.home .signup-container textarea {
+    height: 120px;
+    color: #ffffff;
+    resize: none;
+}
+.home .signup-container .name-container {
+    margin: 10px;
+    display: flex;
+    margin-bottom: 10px;
+}
+.home .signup-container .name-container input[type="text"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #f08801;
+    border-radius: 2px;
+    box-sizing: border-box;
+    font-size: 16px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+}
+.home .signup-container .button-container input[type="submit"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 2px;
+    background-color: #f08801;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.home .signup-container .button-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.home .signup-container .button-container input[type="submit"] {
+    flex: 1;
+    margin-right: 5px; /* Adjust as needed */
+}
+
+.home .signup-container .button-container input[type="submit"]:hover {
+    background-color: #ffffff;
+    color: #f08801;
+}
+
+/* KAN DELETAS */
+/* DATABASE BUTTON CONTAINER */
+.home .database-container {
+
+    display: none;
+    border-radius: 7px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.4);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+
+/* CONTENT ON MAIN SITE WITH READ MORE ETC */
 /* content - the text */
-.home .content{
+.home .content {
     max-height: 15em;
     z-index: 888;
     color: #fff;
@@ -109,7 +371,7 @@ section{
 }
 
 /* the first small container of the text - could add background */
-.home .content.active{
+.home .content.active {
     display: block;
 }
 
@@ -121,7 +383,7 @@ section{
     padding: 0;
 }
 
-.home .content h1{
+.home .content h1 {
     font-size: 4em;
     font-weight: 999;
     text-transform: uppercase;
@@ -130,18 +392,18 @@ section{
     margin-bottom: 40px;
 }
 
-.home .content h1 span{
+.home .content h1 span {
     font-size: 1.2em;
     font-weight: 600;
 }
 
 /* pushes read more button small text */
-.home .content p{
+.home .content p {
     margin-bottom: 25px;
 }
 
 /* "Read More"-button kanske inte längre behövs */
-.home .content a{
+.home .content a {
     background: #f08801;
     padding: 15px 35px;
     color: #fff;
@@ -237,7 +499,7 @@ section{
     bottom: -80px; /* Adjust this value to position the button further down when content is expanded */
 }
 
-.home .content .content-more.hidden{
+.home .content .content-more.hidden {
     display: none;
     margin-bottom: 65px;
     margin: 0;
@@ -245,12 +507,12 @@ section{
 }
 
 /* when hovering "Read More" */
-.home .content a:hover{
+.home .content a:hover {
     background: #fff;
     color: #f08801;
 }
 
-.home .media-icons{
+.home .media-icons {
     z-index: 888;
     position: absolute;
     right: 30px;
@@ -259,22 +521,22 @@ section{
     transition: 0.5s ease;
 }
 
-.home .media-icons a{
+.home .media-icons a {
     color: #fff;
     font-size: 1.6em;
     transition: 0.3s ease;
 }
 
-.home .media-icons a:not(:last-child){
+.home .media-icons a:not(:last-child) {
     margin-bottom: 20px;
 }
 
-.home .media-icons a:hover{
+.home .media-icons a:hover {
     transform: scale(1.3);
     color: #f08801;
 }
 
-.home img{
+.home img {
     z-index: 000;
     position: absolute;
     top: 0;
@@ -285,7 +547,7 @@ section{
 }
 
 /* slider */
-.slider-navigation{
+.slider-navigation {
     z-index: 800;
     position: relative;
     display: flex;
@@ -296,7 +558,7 @@ section{
 }
 
 /* slider */
-.slider-navigation .nav-btn{
+.slider-navigation .nav-btn {
     width: 12px;
     height: 12px;
     background: #fff;
@@ -307,27 +569,27 @@ section{
 }
 
 /* color of nav-circle when active */
-.slider-navigation .nav-btn.active{
+.slider-navigation .nav-btn.active {
     background: #f08801;
 }
 
 /* space between nav-circles */
-.slider-navigation .nav-btn:not(:last-child){
+.slider-navigation .nav-btn:not(:last-child) {
     margin-right: 20px;
 }
 
 /* increase size while hover */
-.slider-navigation .nav-btn:hover{
+.slider-navigation .nav-btn:hover {
     transform: scale(1.2);
 }
 
-.img-slide{
+.img-slide {
     position: absolute;
     width: 100%;
     clip-path: circle(0% at 0 50%);
 }
 
-.img-slide.active{
+.img-slide.active {
     clip-path: circle(150% at 0 50%);
     transition: 2s ease;
     transition-property: clip-path;
@@ -354,20 +616,24 @@ section{
 }
 
 /* resizable window */
-@media (max-width: 1040px){
+@media (max-width: 1040px) {
     header {
         padding: 12px 20px;
     }
+
     section {
         padding: 100px 20px;
     }
-    .home .media-icons{
+
+    .home .media-icons {
         right: 15px;
     }
-    header .navigation{
+
+    header .navigation {
         display: none;
     }
-    header .navigation.active{
+
+    header .navigation.active {
         position: fixed;
         width: 100%;
         height: 100%;
@@ -384,18 +650,18 @@ section{
         max-height: 55%;
     }
 
-    header .navigation .navigation-items a{
+    header .navigation .navigation-items a {
         color: #222;
         font-size: 1.2em;
         margin: 20px;
     }
 
-    header .navigation .navigation-items a:before{
+    header .navigation .navigation-items a:before {
         background: #222;
         height: 5px;
     }
 
-    header .navigation .navigation-items{
+    header .navigation .navigation-items {
         background: #fff;
         width: 600px;
         max-width: 600px;
@@ -408,8 +674,8 @@ section{
         box-shadow: 0 5px 25px rgb(1 1 1 / 20%);
     }
 
-    .menu-btn{
-        background: url(/icons/menu.png)no-repeat;
+    .menu-btn {
+        background: url(/icons/menu.png) no-repeat;
         background-size: 30px;
         background-position: center;
         width: 40px;
@@ -419,7 +685,7 @@ section{
     }
 
     .menu-btn:hover {
-        background: url(/icons/menuhover.png)no-repeat;
+        background: url(/icons/menuhover.png) no-repeat;
         background-size: 30px;
         background-position: center;
         width: 40px;
@@ -428,25 +694,25 @@ section{
         transition: 0.3s ease;
     }
 
-    .menu-btn.active{
+    .menu-btn.active {
         z-index: 999;
-        background: url(/icons/close.png)no-repeat;
+        background: url(/icons/close.png) no-repeat;
         background-size: 25px;
         background-position: center;
         transition: 0.3s ease;
     }
 
-    .menu-btn.active:hover{
+    .menu-btn.active:hover {
         z-index: 999;
-        background: url(/icons/closehover.png)no-repeat;
+        background: url(/icons/closehover.png) no-repeat;
         background-size: 25px;
         background-position: center;
         transition: 0.3s ease;
     }
 }
 
-@media (max-width: 560px){
-    .home .content h1{
+@media (max-width: 560px) {
+    .home .content h1 {
         font-size: 3em;
         line-height: 60px;
     }
@@ -462,7 +728,7 @@ section{
     width: 100%; /* Full width */
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
 
 /* Modal Content */

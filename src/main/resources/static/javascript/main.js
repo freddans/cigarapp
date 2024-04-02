@@ -73,3 +73,96 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+/* contact */
+var contactLink = document.getElementById('contactLink');
+var contactContainer = document.getElementById('contactContainer');
+
+// Add click event listener to the contact link
+contactLink.addEventListener('click', function(event) {
+    // Prevent the default behavior of the link
+    event.preventDefault();
+
+    // Close login container if open
+    loginContainer.style.display = 'none';
+
+    // Close signup container if open
+    signupContainer.style.display = 'none';
+
+    // Toggle the display of the contact container
+    if (contactContainer.style.display === 'block') {
+        contactContainer.style.display = 'none';
+    } else {
+        contactContainer.style.display = 'block';
+    }
+
+    // Reset the message container
+    document.getElementById('messageContainer').innerText = '';
+});
+
+// Add click event listener to the close button in the contact container
+document.querySelector('#contactContainer input[value="Close"]').addEventListener('click', function(event) {
+    // Prevent the default behavior of the button
+    event.preventDefault();
+
+    // Close the contact container
+    contactContainer.style.display = 'none';
+});
+
+// Login
+var loginLink = document.getElementById('loginLink');
+var loginContainer = document.getElementById('loginContainer');
+var signupButton = document.getElementById('signupButton');
+var signupContainer = document.getElementById('signupContainer');
+
+// Add click event listener to the login link
+loginLink.addEventListener('click', function(event) {
+    // Prevent the default behavior of the link
+    event.preventDefault();
+
+    // Close contact container if open
+    contactContainer.style.display = 'none';
+
+    // Toggle the display of the login container
+    if (loginContainer.style.display === 'block') {
+        loginContainer.style.display = 'none';
+    } else {
+        loginContainer.style.display = 'block';
+    }
+
+    // Hide the signup container
+    signupContainer.style.display = 'none';
+});
+
+// Add click event listener to the signup button
+signupButton.addEventListener('click', function(event) {
+    // Prevent the default behavior of the button
+    event.preventDefault();
+
+    // Close contact container if open
+    contactContainer.style.display = 'none';
+
+    // Hide the login container
+    loginContainer.style.display = 'none';
+
+    // Toggle the display of the signup container
+    signupContainer.style.display = signupContainer.style.display === 'none' ? 'block' : 'none';
+});
+
+// Add click event listener to the close button in the login container
+document.querySelector('#loginContainer input[value="Close"]').addEventListener('click', function(event) {
+    // Prevent the default behavior of the button
+    event.preventDefault();
+
+    // Close the login container
+    loginContainer.style.display = 'none';
+});
+
+// Add click event listener to the close button in the signup container
+document.querySelector('#signupContainer input[value="Close"]').addEventListener('click', function(event) {
+    // Prevent the default behavior of the button
+    event.preventDefault();
+
+    // Close the signup container
+    signupContainer.style.display = 'none';
+});

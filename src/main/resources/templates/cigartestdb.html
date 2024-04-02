@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cigar Database</title>
+    <!-- Add your CSS links here -->
+    <link rel="stylesheet" href="/css/cigardb.css">
+    <style>
+        th:nth-child(1) {
+            width: 6.5%; /* image */
+        }
+        td:nth-child(1) {
+            width: 6%;
+        }
+
+        th:nth-child(2) {
+            width: 16.3%; /* name */
+        }
+        td:nth-child(2) {
+            width: 15%;
+        }
+
+        th:nth-child(3) {
+            width: 10.9%; /* brand */
+        }
+        td:nth-child(3) {
+            width: 9.9%;
+        }
+        th:nth-child(4) {
+            width: 10.9%; /* origin */
+        }
+        td:nth-child(4) {
+            width: 10%;
+        }
+        th:nth-child(5) {
+            width: 10.8%; /* price */
+        }
+        td:nth-child(5) {
+            width: 10%;
+        }
+        th:nth-child(6) {
+            width: 10.9%; /* box */
+        }
+        td:nth-child(6) {
+            width: 10%;
+        }
+        th:nth-child(7) {
+            width: 10.9%; /* contains (box amount) */
+        }
+        td:nth-child(7) {
+            width: 10%;
+        }
+        th:nth-child(8) {
+            width: 10.8%; /* status */
+        }
+        td:nth-child(8) {
+            width: 10%;
+        }
+        th:nth-child(9) {
+            width: 12%; /* ratingd */
+        }
+        td:nth-child(9) {
+            width: 10.3%;
+        }
+        /*th:nth-child(10) {*/
+        /*    width: 0.9%;*/
+        /*}*/
+
+        .table-container table {
+            width: 100%;
+        }
+
+        .scrollbar-col {
+            width: 1px; /* Set a small initial width */
+            white-space: nowrap; /* Prevent wrapping */
+            background-color: transparent; /* Hide the column visually */
+            border: none; /* Hide the column border */
+        }
+        #scrollbar-cols {
+            width: 5%;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="/" class="brand">lounge database</a>
+    <div class="menu-btn">
+        <div class="navigation">
+            <div class="navigation-items">
+                <a href="/">Main</a>
+                <a href="/cigardb">CigarDB</a>
+                <a href="#">Contact</a>
+                <a href="#">Login/Signup</a>
+            </div> <!-- /navigation items -->
+        </div> <!-- /navigation -->
+    </div> <!-- /menu-btn -->
+</header>
+
+<!-- Search bar -->
+<div class="search-container">
+    <input type="text" id="searchInput" placeholder="Search for cigars or brand..." data-brand="$cigar.brand}">
+</div>
+
+<!-- Container for the table -->
+<div class="table-container">
+    <!-- head of table -->
+    <table>
+        <thead class="thhead">
+        <tr>
+            <th onclick="sortTable(0)"></th>
+            <th onclick="sortTable(1)">Name</th>
+            <th onclick="sortTable(2)">Brand</th>
+            <th onclick="sortTable(3)">Origin</th>
+            <th onclick="sortTable(4)">Price</th>
+            <th onclick="sortTable(5)">Box</th>
+            <th onclick="sortTable(6)">Contains</th>
+            <th onclick="sortTable(7)">Status</th>
+            <th onclick="sortTable(8)">Rating</th>
+        </tr>
+        </thead>
+    </table>
+</div>
+
+<!-- Container for the table body -->
+<div class="table-container">
+    <table>
+        <tbody class="infodiv" id="cigarTableBody">
+        <!-- Iterate over cigars and populate the table rows -->
+        <tr th:each="cigar : ${cigars}" onclick="showCigarProfile(this)">
+            <td><img th:src="${cigar.imagePath}" alt="Cigar Image" width="30" height="30"></td>
+            <td th:text="${cigar.name}"></td>
+            <td><img th:src="${cigar.brandImagePath}" alt="Brand Image" width="50" height="30" th:title="${cigar.brand}">
+                <span class="invisible" th:text="${cigar.brand}" th:title="${cigar.profilePicture}"></span>
+
+            </td>
+            <td><img th:src="${cigar.originImagePath}" alt="Origin Image" width="50" height="30" th:title="${cigar.origin}"></td>
+            <td th:text="${cigar.price}"></td>
+            <td th:text="${cigar.boxPrice}"></td>
+            <td th:text="${cigar.boxAmount}"></td>
+            <td th:text="${cigar.status}"></td>
+            <td th:text="${cigar.rating}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Your existing cigar profile container -->
+<div id="cigarProfileContainer">
+    <span id="closeBtn" onclick="closeCigarProfile()">x</span>
+    <div id="cigarProfileContent">
+        <img id="cigarProfileImage" src="" alt="Cigar Profile Picture" width="55" height="330">
+        <div id="cigarProfileText"></div>
+    </div>
+</div>
+
+<script src="/javascript/cigardbsearch.js"></script>
+<script>
+
+    function showCigarProfile(row) {
+        // Remove 'selected' class from all rows
+        var rows = document.querySelectorAll("#cigarTableBody tr");
+        rows.forEach(function (row) {
+            row.classList.remove('selected');
+        });
+
+        // Add 'selected' class to the clicked row
+        row.classList.add('selected');
+
+        // Get cigar data from the clicked row
+        var id = row.cells[0].textContent; // Assuming id is in the first cell
+        var name = row.cells[1].textContent; // Assuming name is in the second cell
+        var brand = row.cells[2].querySelector('span').textContent; // Assuming brand is in the third cell
+        var origin = row.cells[3].querySelector('img').getAttribute('title'); // Assuming origin is in the fourth cell
+        var price = row.cells[4].textContent; // Assuming price is in the fifth cell
+        var boxPrice = row.cells[5].textContent; // Assuming boxPrice is in the sixth cell
+        var boxAmount = row.cells[6].textContent; // Assuming boxAmount is in the seventh cell
+        var status = row.cells[7].textContent; // Assuming status is in the eighth cell
+        var rating = row.cells[8].textContent; // Assuming rating is in the ninth cell
+        var profilePicture = row.cells[2].querySelector('span').getAttribute('title'); // Assuming profilePicture is in the third cell
+
+        // Display the cigar profile data in the cigarProfileContent div
+        var cigarProfileContent = document.getElementById('cigarProfileContent');
+        cigarProfileContent.innerHTML = getCigarProfileById(id, name, brand, origin, price, boxPrice, boxAmount, status, rating, profilePicture);
+
+        // Show the cigar profile container
+        var cigarProfileContainer = document.getElementById('cigarProfileContainer');
+        cigarProfileContainer.style.display = 'block';
+    }
+
+    // Example function to fetch cigar profile data by ID
+    function getCigarProfileById(id, name, brand, origin, price, boxPrice, boxAmount, status, rating, profilePicture) {
+        // Example implementation
+        // This function should create the HTML content for the cigar profile based on the provided data
+        // You can format the content as needed
+        var profileContent = "<div id='cigarProfileImage'><img src='" + profilePicture + "' alt='Cigar Profile Picture' width='55' height='330'></div>";
+        profileContent += "<div id='cigarProfileText'>";
+        profileContent += "<h2>Cigar Profile for ID: " + id + "</h2>";
+        profileContent += "<p>Name: " + name + "</p>";
+        profileContent += "<p>Brand: " + brand + "</p>";
+        profileContent += "<p>Origin: " + origin +"</p>";
+        profileContent += "<p>Price: " + price + "</p>";
+        profileContent += "<p>Box Price: " + boxPrice + "</p>";
+        profileContent += "<p>Box Amount: " + boxAmount + "</p>";
+        profileContent += "<p>Status: " + status + "</p>";
+        profileContent += "<p>Rating: " + rating + "</p>";
+        profileContent += "</div>"
+
+        return profileContent;
+    }
+
+    // Example usage:
+    // var cigarProfile = getCigarProfileById(id, name, brand, origin, price, boxPrice, boxAmount, status, rating);
+
+    // Function to adjust the position of the cigar profile container when scrolling
+    window.onscroll = function() { adjustProfileContainerPosition(); };
+
+    function adjustProfileContainerPosition() {
+        var profileContainer = document.getElementById('cigarProfileContainer');
+        var tableRect = document.querySelector('table').getBoundingClientRect();
+        var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        profileContainer.style.top = Math.max(50, tableRect.top - scrollTop) + 'px';
+    }
+
+    function closeCigarProfile() {
+        var cigarProfileContainer = document.getElementById('cigarProfileContainer');
+        cigarProfileContainer.style.display = 'none'; // Hide the container
+    }
+
+</script>
+</body>
+</html>

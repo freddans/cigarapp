@@ -223,6 +223,13 @@ public class CigarController {
         return "index";
     }
 
+    @GetMapping("/test")
+    public String testPage(Model model) {
+        model.addAttribute("showModal", true);
+        model.addAttribute("cigars", service.getAllCigars());
+        return "cigartestdb";
+    }
+
 
     // Test for table
     @GetMapping("/cigardb")
