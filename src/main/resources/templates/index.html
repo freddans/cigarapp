@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -39,10 +39,10 @@
     <div class="contact-container" id="contactContainer"> <!-- contact container -->
         <h2>Contact</h2>
         <div id="messageContainer"></div>
-        <form id="contactForm">
-            <input type="text" name="name" placeholder="Your Name" required><br>
-            <input type="email" name="email" placeholder="Your Email" required><br>
-            <textarea name="message" placeholder="Your Message" required></textarea><br>
+        <form action="/saveContact" method="post" id="contactForm">
+            <input type="text" name="name" placeholder="Your Name" required /><br>
+            <input type="email" name="email" placeholder="Your Email" required /><br>
+            <textarea type="message" name="message" placeholder="Your Message" required></textarea><br>
             <div class="button-container">
                 <input type="submit" value="Submit Message">
                 <input type="submit" value="Close">
