@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact</title>
+    <style>
+        body {
+            background-color: #fff; /* Set background color to white */
+            margin: 0; /* Remove default body margin */
+            padding: 20px; /* Add some padding for content */
+            font-family: Arial, sans-serif; /* Set a default font family */
+        }
+
+        .pre-container {
+            width: 600px;
+
+        }
+
+        .pre-container .contactpost-container {
+            display: inline-block;
+            background-color: rgba(0, 0, 0, 0.4);
+            color: #fff;
+            padding: 10px; /* Add padding for content within the div */
+            margin-bottom: 10px; /* Add margin between each contact post */
+            border-radius: 7px;
+            width: 150px;
+            height: 150px;
+            transition: background-color 0.3s,
+            width 0.3s,
+            height 0.3s;
+        }
+
+        .pre-container .contactpost-container:hover {
+            background-color: #222222;
+            width: 180px;
+            height: 150px;
+        }
+
+        .delete-button {
+            position: absolute;
+            margin-left: 100px;
+        }
+
+        .clickedContent {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 999;
+            width: 300px;
+            height: 600px;
+            background-color: #222222;
+        }
+
+        .invisible {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<center>
+    <div class="pre-container" align="left">
+
+        <div class="contactpost-container" th:each="contactPost : ${contactPosts}"
+             onclick="showContactPostProfile(this)">
+            <button class="delete-button">delete</button>
+            <span class="invisible" th:text="${contactPost.id}"></span>
+            <p class="name" th:text="${contactPost.name}"></p>
+            <p class="email" th:text="${contactPost.email}"></p>
+            <p class="msg" th:text="${contactPost.message}"></p>
+            <button>mark</button>
+        </div>
+    </div>
+    <!-- Placeholder for clicked content -->
+    <div id="clickedContent" class="clickedContent">
+    </div>
+
+</center>
+
+<script>
+    function showContactPostProfile(row) {
+        // Remove 'selected' class from all rows
+        var rows = document.querySelectorAll(".contactpost-container");
+        rows.forEach(function (row) {
+            row.classList.remove('selected');
+        });
+
+        // Add 'selected' class to the clicked row
+        row.classList.add('selected');
+
+        // Get cigar data from the clicked row
+        var postId = row.querySelector('.invisible').textContent;
+        var name = row.querySelector('.name').textContent;
+        var email = row.querySelector('.email').textContent;
+        var message = row.querySelector('.msg').textContent;
+
+        // Display the cigar profile data in the clickedContent div
+        var clickedContent = document.getElementById('clickedContent');
+        clickedContent.innerHTML = getContactPostProfileById(postId, name, email, message);
+
+        // Show the clickedContent div
+        clickedContent.style.display = 'block';
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        // Function to adjust the position of the clicked content container when scrolling
+        window.onscroll = function () {
+            adjustProfileContainerPosition();
+        };
+
+        // Example function to adjust position
+        function adjustProfileContainerPosition() {
+            // Your adjustment logic here
+        }
+    });
+
+    function getContactPostProfileById(postId, name, email, message) {
+        var profileContent = "<h2>Contact Post Profile for ID: " + postId + "</h2>";
+        profileContent += "<p>Name: " + name + "</p>";
+        profileContent += "<p>Email: " + email + "</p>";
+        profileContent += "<p>Message: " + message + "</p>";
+
+        return profileContent;
+    }
+</script>
+
+
+</body>
+</html>

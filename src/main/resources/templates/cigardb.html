@@ -117,7 +117,7 @@
     <thead id="tableHead">
     <tr>
         <th onclick="sortTable(0)">Image</th>
-<!--        <th onclick="sortTable(1)">Id</th>-->
+        <!--        <th onclick="sortTable(1)">Id</th>-->
         <th onclick="sortTable(1)">Name</th>
         <th onclick="sortTable(2)">Brand</th>
         <th onclick="sortTable(3)">Origin</th>
@@ -132,7 +132,7 @@
     <!-- Iterate over cigars and populate the table rows -->
     <tr th:each="cigar : ${cigars}" onclick="showCigarProfile(this)">
         <td><img th:src="${cigar.imagePath}" alt="Cigar Image" width="30" height="30"></td>
-<!--        <td th:text="${cigar.id}"></td>-->
+        <!--        <td th:text="${cigar.id}"></td>-->
         <td th:text="${cigar.name}"></td>
         <td><img th:src="${cigar.brandImagePath}" alt="Brand Image" width="50" height="30" th:title="${cigar.brand}">
             <span class="invisible" th:text="${cigar.brand}" th:title="${cigar.profilePicture}"></span>
@@ -204,7 +204,7 @@
         profileContent += "<h2>Cigar Profile for ID: " + id + "</h2>";
         profileContent += "<p>Name: " + name + "</p>";
         profileContent += "<p>Brand: " + brand + "</p>";
-        profileContent += "<p>Origin: " + origin +"</p>";
+        profileContent += "<p>Origin: " + origin + "</p>";
         profileContent += "<p>Price: " + price + "</p>";
         profileContent += "<p>Box Price: " + boxPrice + "</p>";
         profileContent += "<p>Box Amount: " + boxAmount + "</p>";
@@ -219,7 +219,9 @@
     // var cigarProfile = getCigarProfileById(id, name, brand, origin, price, boxPrice, boxAmount, status, rating);
 
     // Function to adjust the position of the cigar profile container when scrolling
-    window.onscroll = function() { adjustProfileContainerPosition(); };
+    window.onscroll = function () {
+        adjustProfileContainerPosition();
+    };
 
     function adjustProfileContainerPosition() {
         var profileContainer = document.getElementById('cigarProfileContainer');
