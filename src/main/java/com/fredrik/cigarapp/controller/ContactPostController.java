@@ -4,6 +4,7 @@ import com.fredrik.cigarapp.model.Cigar;
 import com.fredrik.cigarapp.model.ContactPost;
 import com.fredrik.cigarapp.service.ContactPostService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -81,23 +82,34 @@ public class ContactPostController {
     }
 
     // Delete in postman
-    @DeleteMapping("/deleteContactPost/{id}")
-    public ResponseEntity<String> deleteContactPostById(@PathVariable Long id) {
+//    @DeleteMapping("/deleteContactPost/{id}")
+//    public ResponseEntity<String> deleteContactPostById(@PathVariable Long id) {
+//        ContactPost contactPostToDelete = getContactPostById(id);
+//
+//        if (contactPostToDelete != null) {
+//            contactPostService.delete(contactPostToDelete);
+//            return ResponseEntity.ok("ContactPost with ID: " + id + " has been deleted");
+//        } else {
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("ERROR: ContactPost with id: " + id + ", does not exist");
+//        }
+//    }
+
+    @PostMapping("/deleteContactPost/{id}")
+    public ResponseEntity<Void> deleteContactPostById(@PathVariable Long id) {
         ContactPost contactPostToDelete = getContactPostById(id);
 
         if (contactPostToDelete != null) {
             contactPostService.delete(contactPostToDelete);
-            return ResponseEntity.ok("ContactPost with ID: " + id + " has been deleted");
+            return ResponseEntity.status(HttpStatus.FOUND).header(HttpHeaders.LOCATION, "/contactpost").build();
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("ERROR: ContactPost with id: " + id + ", does not exist");
+            return ResponseEntity.notFound().build();
         }
     }
 
     // WEBPAGE
     // Test for table
     @GetMapping("/contactpost")
-    public String getCigarDbPage(Model model) {
-//        model.addAttribute("showModal", true);
+    public String contactPostPage(Model model) {
         model.addAttribute("contactPosts", contactPostService.getAllContactPosts());
         return "contactpost";
     }

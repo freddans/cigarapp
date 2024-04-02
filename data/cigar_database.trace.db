@@ -425,3 +425,6 @@ insert into contactpost (email,message,name,id) values (?,?,?,?) [22001-224]
 2024-04-02 18:37:43.073825+02:00 jdbc[13]: exception
 org.h2.jdbc.JdbcSQLDataException: Value too long for column "MESSAGE CHARACTER VARYING(255)": "'messagemessagemessagemessagemessagemessagemessagemessagemessagemessagemessageme... (256)"; SQL statement:
 insert into contactpost (email,message,name,id) values (?,?,?,?) [22001-224]
+2024-04-02 23:08:44.097942+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "MESSAGE CHARACTER VARYING(255)": "U&'Testar att skriva ett testmeddelande lite l\\00e4ngre d\\00e5 jag har slut p\\00... (259)"; SQL statement:
+insert into contactpost (email,message,name,id) values (?,?,?,?) [22001-224]
