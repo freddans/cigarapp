@@ -9,6 +9,7 @@ public class Cigar {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     @Column
     private String name;
     @Column

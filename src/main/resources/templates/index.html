@@ -22,6 +22,7 @@
                 <!-- KAN DELETAS -->
                 <a href="/cigardb" id="cigardbLink">CigarDB</a>
                 <a href="#" id="contactLink">Contact</a>
+                <a href="#" id="checkContactPosts">Contact Posts</a> <!-- link should only be shown when logged in -->
                 <a href="#" id="loginLink">Login/Signup</a>
             </div> <!-- /navigation items -->
         </div> <!-- /navigation -->
@@ -53,9 +54,9 @@
     <div class="login-container" id="loginContainer"> <!-- login container -->
         <h2>Login</h2>
         <div id="messageContainer2"></div>
-        <form id="loginForm">
+        <form action="/login" method="post" id="loginForm">
             <input type="text" name="username" placeholder="Username" required><br>
-            <input type="text" name="password" placeholder="Password" required><br>
+            <input type="password" name="password" placeholder="Password" required><br>
             <div class="button-container">
                 <input type="submit" value="Login">
                 <input type="submit" id="signupButton" value="Sign Up">
@@ -67,14 +68,14 @@
     <div class="signup-container" id="signupContainer"> <!-- signup container -->
         <h2>Sign Up</h2>
         <div id="messageContainer3">
-            <form id="signupForm">
+            <form action="/member/add" method="post" id="signupForm">
                 <div class="name-container">
-                    <input type="text" name="name" placeholder="Enter First Name" required>
-                    <input type="text" name="lastname" placeholder="Enter Surname" required>
+                    <input type="text" name="firstName" placeholder="Enter First Name" required>
+                    <input type="text" name="lastName" placeholder="Enter Surname" required>
                 </div>
-                <input type="email" name="email" placeholder="Enter Email">
+                <input type="email" name="email" placeholder="Enter Email" required>
                 <input type="text" name="username" placeholder="Enter Username" required>
-                <input type="text" name="password" placeholder="Enter Password" required>
+                <input type="password" name="password" placeholder="Enter Password" required>
                 <div class="button-container">
                     <input type="submit" value="Register">
                     <input type="submit" value="Close">
