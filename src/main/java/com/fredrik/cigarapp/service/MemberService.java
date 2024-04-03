@@ -5,8 +5,10 @@ import com.fredrik.cigarapp.model.ContactPost;
 import com.fredrik.cigarapp.model.Member;
 import com.fredrik.cigarapp.repo.MemberRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 import java.util.Optional;
@@ -22,7 +24,11 @@ public class MemberService {
     }
 
     public Member save(Member member) {
-        return memberRepo.save(member);
+        if (getMemberByEmail(member.getEmail())) {
+            return null;
+        } else {
+            return memberRepo.save(member);
+        }
     }
 
     // Get all members
