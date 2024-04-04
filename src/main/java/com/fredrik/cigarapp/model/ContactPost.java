@@ -3,17 +3,18 @@ package com.fredrik.cigarapp.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="contact")
-public class Contact {
+@Table(name="contactpost")
+public class ContactPost {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
+
   private String name;
   private String email;
   private String message;
 
-  public Contact() {
+  public ContactPost() {
   }
 
   public Long getId() {
