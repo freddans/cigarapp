@@ -132,7 +132,7 @@
     <!-- Iterate over cigars and populate the table rows -->
     <tr th:each="cigar : ${cigars}" onclick="showCigarProfile(this)">
         <td><img th:src="${cigar.imagePath}" alt="Cigar Image" width="30" height="30"></td>
-        <!--        <td th:text="${cigar.id}"></td>-->
+                <td th:text="${cigar.id}"></td>
         <td th:text="${cigar.name}"></td>
         <td><img th:src="${cigar.brandImagePath}" alt="Brand Image" width="50" height="30" th:title="${cigar.brand}">
             <span class="invisible" th:text="${cigar.brand}" th:title="${cigar.profilePicture}"></span>
@@ -187,7 +187,8 @@
 
         // Display the cigar profile data in the cigarProfileContent div
         var cigarProfileContent = document.getElementById('cigarProfileContent');
-        cigarProfileContent.innerHTML = getCigarProfileById(id, name, brand, origin, price, boxPrice, boxAmount, status, rating, profilePicture);
+        // cigarProfileContent.innerHTML = getCigarProfileById(id, name, brand, origin, price, boxPrice, boxAmount, status, rating, profilePicture);
+        cigarProfileContent.innerHTML = getCigarProfileById(name, brand, origin, price, boxPrice, boxAmount, status, rating, profilePicture);
 
         // Show the cigar profile container
         var cigarProfileContainer = document.getElementById('cigarProfileContainer');
@@ -195,13 +196,31 @@
     }
 
     // Example function to fetch cigar profile data by ID
-    function getCigarProfileById(id, name, brand, origin, price, boxPrice, boxAmount, status, rating, profilePicture) {
+    // function getCigarProfileById(id, name, brand, origin, price, boxPrice, boxAmount, status, rating, profilePicture) {
+    //     // Example implementation
+    //     // This function should create the HTML content for the cigar profile based on the provided data
+    //     // You can format the content as needed
+    //     var profileContent = "<div id='cigarProfileImage'><img src='" + profilePicture + "' alt='Cigar Profile Picture' width='55' height='330'></div>";
+    //     profileContent += "<div id='cigarProfileText'>";
+    //     profileContent += "<h2>Cigar Profile for ID: " + id + "</h2>";
+    //     profileContent += "<p>Name: " + name + "</p>";
+    //     profileContent += "<p>Brand: " + brand + "</p>";
+    //     profileContent += "<p>Origin: " + origin + "</p>";
+    //     profileContent += "<p>Price: " + price + "</p>";
+    //     profileContent += "<p>Box Price: " + boxPrice + "</p>";
+    //     profileContent += "<p>Box Amount: " + boxAmount + "</p>";
+    //     profileContent += "<p>Status: " + status + "</p>";
+    //     profileContent += "<p>Rating: " + rating + "</p>";
+    //     profileContent += "</div>"
+    //
+    //     return profileContent;
+    // }
+    function getCigarProfileById(name, brand, origin, price, boxPrice, boxAmount, status, rating, profilePicture) {
         // Example implementation
         // This function should create the HTML content for the cigar profile based on the provided data
         // You can format the content as needed
         var profileContent = "<div id='cigarProfileImage'><img src='" + profilePicture + "' alt='Cigar Profile Picture' width='55' height='330'></div>";
         profileContent += "<div id='cigarProfileText'>";
-        profileContent += "<h2>Cigar Profile for ID: " + id + "</h2>";
         profileContent += "<p>Name: " + name + "</p>";
         profileContent += "<p>Brand: " + brand + "</p>";
         profileContent += "<p>Origin: " + origin + "</p>";
