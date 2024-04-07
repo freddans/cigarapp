@@ -3,173 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>Contact</title>
-    <style>
-        body {
-            background-color: #fff; /* Set background color to white */
-            margin: 0; /* Remove default body margin */
-            padding: 20px; /* Add some padding for content */
-            font-family: Arial, sans-serif; /* Set a default font family */
-        }
+    <link rel="stylesheet" href="/css/contactpost.css">
 
-        .pre-container {
-            padding: 20px;
-            border-radius: 7px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: rgba(0, 0, 0, 0.4); /* Background color with 40% opacity */
-            width: 706px;
-            height: 800px;
-            overflow-y: auto; /* Add scrollbar when needed */
-            overflow-x: hidden;
-            scrollbar-width: thin; /* Specify the width of the scrollbar */
-            scrollbar-color: orange rgba(0, 0, 0, 0.4); /* Define the color of the scrollbar */
-        }
-
-        .pre-container .contactpost-container .msg {
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-        }
-
-        .pre-container .contactpost-container {
-            display: inline-block;
-            background-color: rgba(0, 0, 0, 0.4);
-            color: #fff;
-            padding: 10px; /* Add padding for content within the div */
-            margin-bottom: 10px; /* Add margin between each contact post */
-            border-radius: 7px;
-            width: 150px;
-            height: 200px;
-            transition: background-color 0.3s, width 0.3s, height 0.3s;
-        }
-
-        .pre-container .contactpost-container:hover {
-            background-color: #222222;
-            /*width: 180px;*/
-            /*height: 150px;*/
-        }
-
-        .clickedContent {
-            display: none;
-            border-radius: 7px;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: rgba(0, 0, 0, 0.4);
-            -webkit-backdrop-filter: blur(10px);
-            backdrop-filter: blur(10px);
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            z-index: 999;
-            max-width: 400px;
-            width: 100%;
-            text-align: center;
-            color: #ffffff; /* Set text color */
-        }
-
-        .delete-button {
-            display: none;
-            position: relative;
-            width: calc(100% - 90px);
-            margin-left: 90px;
-            padding: 10px;
-            border: none;
-            border-radius: 7px;
-            /*background-color: darkred;*/
-            color: #fff;
-            font-size: 16px;
-            cursor: pointer;
-            flex: 1;
-            background-color: darkred;
-            transition: background-color ease 0.3s;
-        }
-
-        .delete-button:hover {
-            background-color: red;
-            color: #ffffff;
-        }
-
-        .done-button {
-            width: calc(100% - 90px);
-            padding: 10px;
-            margin: 10px;
-            border: none;
-            border-radius: 7px;
-            background-color: #f08801;
-            color: #fff;
-            font-size: 16px;
-            cursor: pointer;
-            flex: 1;
-        }
-
-        .done-button:hover {
-            background-color: #ffffff;
-            color: #f08801;
-        }
-
-        .clickedContent h2 {
-            margin-bottom: 20px;
-            color: #ffffff;
-        }
-
-
-        .invisible {
-            display: none;
-        }
-
-        /* Style for textarea */
-        .clickedContent textarea {
-            width: calc(100% - 20px);
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #f08801;
-            border-radius: 2px;
-            box-sizing: border-box;
-            font-size: 16px;
-            background-color: rgba(0, 0, 0, 0.5);
-            color: #ffffff;
-            resize: none;
-            height: 120px;
-            overflow-y: auto; /* Add scrollbar when needed */
-            scrollbar-width: thin; /* Specify the width of the scrollbar */
-            scrollbar-color: orange rgba(0, 0, 0, 0.4); /* Define the color of the scrollbar */
-        }
-
-        .textbox {
-            width: calc(100% - 20px);
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #f08801;
-            border-radius: 2px;
-            box-sizing: border-box;
-            font-size: 16px;
-            background-color: rgba(0, 0, 0, 0.5);
-            color: #ffffff;
-            text-align: left;
-        }
-    </style>
 </head>
 <body>
 
 <center>
-    <div class="pre-container" align="left">
-        <div class="contactpost-container" th:each="contactPost : ${contactPosts}" onclick="showContactPostProfile(this)">
-            <form th:action="@{'/deleteContactPost/' + ${contactPost.id}}" method="post">
-            <button class="delete-button"  onclick="deleteContactPost(event, ${contactPost.id})">delete</button></form>
+    <div class="home">
+        <div class="pre-container" align="left">
+            <div class="contactpost-container" th:each="contactPost : ${contactPosts}"
+                 onclick="showContactPostProfile(this)">
+                <form th:action="@{'/deleteContactPost/' + ${contactPost.id}}" method="post">
+                    <button class="delete-button" onclick="deleteContactPost(event, ${contactPost.id})">delete</button>
+                </form>
 
-            <span class="invisible" th:text="${contactPost.id}"></span>
-            <p class="name" th:text="${contactPost.name}"></p>
-            <p class="email" th:text="${contactPost.email}"></p>
-            <p class="msg" th:text="${contactPost.message}"></p>
-            <button class="done-button" onclick="changeBackground(this.parentNode)">done</button>
-
+                <span class="invisible" th:text="${contactPost.id}"></span>
+                <p class="name" th:text="${contactPost.name}"></p>
+                <p class="email" th:text="${contactPost.email}"></p>
+                <p class="msg" th:text="${contactPost.message}"></p>
+                <button class="done-button" onclick="changeBackground(this.parentNode)">done</button>
+            </div> <!-- /inner div -->
+            </form>
         </div>
+
+        <!-- Placeholder for clicked content -->
+        <div id="clickedContent" class="clickedContent"></div>
     </div>
-    <!-- Placeholder for clicked content -->
-    <div id="clickedContent" class="clickedContent"></div>
 </center>
 
 <script>
@@ -177,7 +36,7 @@
         // Check if the clicked element is the "done" button or the "delete" button
         if (!event.target.classList.contains('done-button') && !event.target.classList.contains('delete-button')) {
             // Remove 'selected' class from all rows
-            var rows = document.querySelectorAll(".contactpost-container");
+            var rows = document.querySelectorAll(".pre-container");
             rows.forEach(function (row) {
                 row.classList.remove('selected');
             });
@@ -200,7 +59,7 @@
         }
     }
 
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function () {
         // Function to adjust the position of the clicked content container when scrolling
         window.onscroll = function () {
             adjustProfileContainerPosition();
@@ -221,7 +80,7 @@
         profileContent += "<div class='textbox'>" + email + "</div>"; // Email textbox
         profileContent += "<p alignt='left'>Message:</p>";
         profileContent += "<textarea readonly>" + message + "</textarea>";
-        profileContent += "<button class='done-button' onclick='closeClickedContent()'>Close</button>";
+        profileContent += "<button class='close-button' onclick='closeClickedContent()'>Close</button>";
 
         return profileContent;
     }
@@ -246,27 +105,27 @@
         }
     }
 
-    // function deleteContactPost(event, postId) {
-    //     // Prevent the event from propagating to parent elements
-    //     event.stopPropagation();
-    //
-    //     // Send an AJAX request to delete the contact post
-    //     var xhr = new XMLHttpRequest();
-    //     xhr.open("DELETE", "/deleteContactPost/" + postId, true);
-    //     xhr.onreadystatechange = function () {
-    //         if (xhr.readyState === 4) {
-    //             if (xhr.status === 200) {
-    //                 // Handle success response if needed
-    //                 console.log("Contact post deleted successfully");
-    //                 location.reload(); // Reload the page for example
-    //             } else {
-    //                 // Handle error response if needed
-    //                 console.error("Error deleting contact post");
-    //             }
-    //         }
-    //     };
-    //     xhr.send();
-    // }
+    function deleteContactPost(event, postId) {
+        // Prevent the event from propagating to parent elements
+        event.stopPropagation();
+
+        // Send an AJAX request to delete the contact post
+        var xhr = new XMLHttpRequest();
+        xhr.open("DELETE", "/deleteContactPost/" + postId, true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    // Handle success response if needed
+                    console.log("Contact post deleted successfully");
+                    location.reload(); // Reload the page for example
+                } else {
+                    // Handle error response if needed
+                    console.error("Error deleting contact post");
+                }
+            }
+        };
+        xhr.send();
+    }
 </script>
 
 </body>

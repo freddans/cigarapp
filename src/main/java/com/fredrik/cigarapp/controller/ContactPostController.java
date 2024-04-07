@@ -25,11 +25,19 @@ public class ContactPostController {
     }
 
     // add contactpost through website form
+//    @PostMapping("/saveContactPost")
+//    public String saveContactPost(ContactPost contactPost, RedirectAttributes redirectAttributes) {
+//        contactPostService.save(contactPost);
+//        redirectAttributes.addFlashAttribute("message", "Contact saved");
+//        return "index";
+//    }
+
     @PostMapping("/saveContactPost")
     public String saveContactPost(ContactPost contactPost, RedirectAttributes redirectAttributes) {
-        contactPostService.save(contactPost);
-        redirectAttributes.addFlashAttribute("message", "Contact saved");
-        return "index";
+        ContactPost savedContactPost = contactPostService.save(contactPost);
+
+        redirectAttributes.addFlashAttribute("message", "Contact saved successfully");
+        return "redirect:/";
     }
 
     // add contactpost through postman

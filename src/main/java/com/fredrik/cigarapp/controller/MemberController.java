@@ -27,7 +27,7 @@ public class MemberController {
     public String addMember(Member member, RedirectAttributes redirectAttributes) {
         memberService.save(member);
         redirectAttributes.addFlashAttribute("message", "Contact saved");
-        return "index";
+        return "redirect:/";
     }
 
     @GetMapping("/member/all")

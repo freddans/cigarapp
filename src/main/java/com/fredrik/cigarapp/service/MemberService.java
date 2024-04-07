@@ -21,7 +21,14 @@ public class MemberService {
         this.memberRepo = memberRepo;
     }
 
+//    public Member save(Member member) {
+//        return memberRepo.save(member);
+//    }
+
     public Member save(Member member) {
+        if (member.getRole() == null || member.getRole().isEmpty()) {
+            member.setRole("ROLE_USER");
+        }
         return memberRepo.save(member);
     }
 

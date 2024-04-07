@@ -7,6 +7,149 @@
     <title>LOUNGE</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
     <link rel="stylesheet" href="/css/style.css">
+    <style>
+
+        .pre-container {
+            padding: 20px;
+            border-radius: 7px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.4); /* Background color with 40% opacity */
+            width: 706px;
+            height: 800px;
+            overflow-y: auto; /* Add scrollbar when needed */
+            overflow-x: hidden;
+            scrollbar-width: thin; /* Specify the width of the scrollbar */
+            scrollbar-color: orange rgba(0, 0, 0, 0.4); /* Define the color of the scrollbar */
+        }
+
+        .pre-container .pre-container .msg {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .pre-container .pre-container {
+            display: inline-block;
+            background-color: rgba(0, 0, 0, 0.4);
+            color: #fff;
+            padding: 10px; /* Add padding for content within the div */
+            margin-bottom: 10px; /* Add margin between each contact post */
+            border-radius: 7px;
+            width: 150px;
+            height: 200px;
+            transition: background-color 0.3s, width 0.3s, height 0.3s;
+        }
+
+        .pre-container .pre-container:hover {
+            background-color: #222222;
+            /*width: 180px;*/
+            /*height: 150px;*/
+        }
+
+        .clickedContent {
+            display: none;
+            border-radius: 7px;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.4);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            color: #ffffff; /* Set text color */
+        }
+
+        .delete-button {
+            display: none;
+            position: relative;
+            width: calc(100% - 90px);
+            margin-left: 90px;
+            padding: 10px;
+            border: none;
+            border-radius: 7px;
+            /*background-color: darkred;*/
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            flex: 1;
+            background-color: darkred;
+            transition: background-color ease 0.3s;
+        }
+
+        .delete-button:hover {
+            background-color: red;
+            color: #ffffff;
+        }
+
+        .done-button {
+            width: calc(100% - 90px);
+            padding: 10px;
+            margin: 10px;
+            border: none;
+            border-radius: 7px;
+            background-color: #f08801;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            flex: 1;
+        }
+
+        .done-button:hover {
+            background-color: #ffffff;
+            color: #f08801;
+        }
+
+        .clickedContent h2 {
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+
+        .invisible {
+            display: none;
+        }
+
+        /* Style for textarea */
+        .clickedContent textarea {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #f08801;
+            border-radius: 2px;
+            box-sizing: border-box;
+            font-size: 16px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #ffffff;
+            resize: none;
+            height: 120px;
+            overflow-y: auto; /* Add scrollbar when needed */
+            scrollbar-width: thin; /* Specify the width of the scrollbar */
+            scrollbar-color: orange rgba(0, 0, 0, 0.4); /* Define the color of the scrollbar */
+        }
+
+        .textbox {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #f08801;
+            border-radius: 2px;
+            box-sizing: border-box;
+            font-size: 16px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #ffffff;
+            text-align: left;
+        }
+
+    </style>
 </head>
 
 <body>
@@ -17,12 +160,12 @@
         <div class="navigation">
             <div class="navigation-items">
                 <a href="/">Main</a>
-<!--                <a href="/cigardb" id="cigardbLink">CigarDB</a>-->
+                <!--                <a href="/cigardb" id="cigardbLink">CigarDB</a>-->
 
                 <!-- KAN DELETAS -->
                 <a href="/cigardb" id="cigardbLink">CigarDB</a>
                 <a href="#" id="contactLink">Contact</a>
-                <a href="#" id="checkContactPosts">ContactPosts</a> <!-- link should only be shown when logged in -->
+                <a href="/contactpost" th:if="${isAdmin}" id="contactPostLink">ContactPosts</a> <!-- link should only be shown when logged in -->
                 <a href="#" id="loginLink">Login/Signup</a>
             </div> <!-- /navigation items -->
         </div> <!-- /navigation -->
@@ -39,11 +182,15 @@
 
     <div class="contact-container" id="contactContainer"> <!-- contact container -->
         <h2>Contact</h2>
-        <div id="messageContainer"></div>
+        <div id="messageContainer">
+            <p th:if="${message}" th:text="${message}" style="color: green;"></p>
+        </div>
         <form action="/saveContactPost" method="post" id="contactForm">
-            <input type="text" name="name" placeholder="Your Name" required /><br>
-            <input type="email" name="email" placeholder="Your Email" required /><br>
-            <textarea type="message" name="message" placeholder="Your Message (max 255 letters)" required></textarea><br>
+
+            <input type="text" name="name" placeholder="Your Name" required/><br>
+            <input type="email" name="email" placeholder="Your Email" required/><br>
+            <textarea type="message" name="message" placeholder="Your Message (max 255 letters)"
+                      required></textarea><br>
             <div class="button-container">
                 <input type="submit" value="Submit Message">
                 <input type="submit" value="Close">
@@ -666,5 +813,6 @@
 </section> <!-- /home -->
 
 <script src="/javascript/main.js"></script>
+
 </body>
 </html>
