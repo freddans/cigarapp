@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -38,10 +39,26 @@ public class CigarController {
         return ResponseEntity.ok(multipleCigars);
     }
 
+    // Add with log
+    @PostMapping("/addWithLog")
+    public String addCigarWithLog(@RequestBody Cigar cigar, RedirectAttributes redirectAttributes) {
+        Cigar newCigar = service.saveWithLog(cigar);
+        redirectAttributes.addFlashAttribute("message", "Contact saved successfully");
+        return "redirect:/";
+//        return ResponseEntity<String>(service.saveWithLog(cigar), HttpStatus.CREATED);
+    }
+
     // View list of all cigars
     @GetMapping("/cigars")
     public ResponseEntity<List<Cigar>> getCigars() {
         List<Cigar> cigars = service.getAllCigars();
+        return ResponseEntity.ok(cigars);
+    }
+
+    // Get list with log
+    @GetMapping("/cigarsWithLog")
+    public ResponseEntity<List<Cigar>> getCigarsWithLog() {
+        List<Cigar> cigars = service.getAllCigarsWithLog();
         return ResponseEntity.ok(cigars);
     }
 
@@ -181,6 +198,14 @@ public class CigarController {
         return ResponseEntity.status(HttpStatus.OK).body(responseMessage.toString());
     }
 
+    // Edit cigar
+    @PutMapping("/new/editcigar/{id}")
+    public ResponseEntity<String> newEditById(@PathVariable Long id, @RequestBody Cigar updatedCigar) {
+        Cigar existingCigar = getCigarById(id);
+
+        return new ResponseEntity<>(service.editCigar(existingCigar, updatedCigar), HttpStatus.CREATED);
+    }
+
     // Delete in postman
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteCigarById(@PathVariable Long id) {
@@ -192,6 +217,13 @@ public class CigarController {
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("ERROR: Cigar with id: " + id + ", does not exist");
         }
+    }
+
+    @DeleteMapping("/deleteWithLogger/{id}")
+    public ResponseEntity<String> deleteCigarsByIdWithLog(@PathVariable Long id) {
+        Cigar cigarToDelete = getCigarById(id);
+
+        return ResponseEntity.ok(service.deleteWithLog(cigarToDelete));
     }
 
 

@@ -67,6 +67,12 @@ public class SecurityConfig {
                     auth2Config.requestMatchers("/member/add").permitAll();
 
                     auth2Config.requestMatchers("/member/all").permitAll();
+
+                    auth2Config.requestMatchers("/addWithLog").permitAll();
+                    auth2Config.requestMatchers("/cigarsWithLog").permitAll();
+                    auth2Config.requestMatchers("/new/editcigar/**").permitAll();
+                    auth2Config.requestMatchers("/delete/**").permitAll();
+                    auth2Config.requestMatchers("/deleteWithLogger/**").permitAll();
                 })
                 .csrf(AbstractHttpConfigurer::disable);
         return http.build();
