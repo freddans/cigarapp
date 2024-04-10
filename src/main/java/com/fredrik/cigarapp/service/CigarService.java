@@ -29,7 +29,7 @@ public class CigarService {
 
     public List<Cigar> getAllCigarsWithLog() {
 
-        logger.info("Client gets a list of cigars");
+        logger.info("Client gets a list of cigars\n");
         return repo.findAll();
     }
 
@@ -146,9 +146,11 @@ public class CigarService {
                 existingCigar.setProfilePicture(updatedCigar.getProfilePicture());
             }
 
+            logger.info("UPDATED Cigar with id: " + existingCigar.getId() + ":\n" + responseMessage + "\n");
+
             save(existingCigar);
         } else {
-            logger.warn("There is no cigar with that ID in the database");
+            logger.warn("There is no cigar with that ID in the database\n");
         }
 
 
@@ -157,13 +159,13 @@ public class CigarService {
 
     public Cigar saveWithLog(Cigar newCigar) {
         if (newCigar.getId() != null) {
-            logger.warn("Aborted: An id was provided from client");
+            logger.warn("Aborted: An id was provided from client\n");
             throw new RuntimeException("Aborted: an id was provided from client");
         }
         // We dont want ID, database has auto_increment
 
         Cigar cigar = repo.save(newCigar);
-        logger.info("A client added a new Cigar: " + cigar.getName());
+        logger.info("A client added a new Cigar: " + cigar.getName() + "\n");
         return cigar;
     }
 
@@ -187,7 +189,7 @@ public class CigarService {
 
             repo.delete(cigarToDelete);
 
-            logger.info("DELETED: " + cigarInfo.getName() + " with ID: " + cigarInfo.getId());
+            logger.info("DELETED: " + cigarInfo.getName() + " with ID: " + cigarInfo.getId() + "\n");
 
             return "Cigar with ID: " + cigarInfo.getId() + " has been deleted";
         } else {

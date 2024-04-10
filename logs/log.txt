@@ -1,0 +1,28 @@
+2024-04-10 22:31:07,169 * INFO * com.fredrik.cigarapp.service.CigarService * saveWithLog * A client added a new Cigar: FREDDANS
+
+2024-04-10 22:31:12,695 * INFO * com.fredrik.cigarapp.service.CigarService * getAllCigarsWithLog * Client gets a list of cigars
+
+2024-04-10 22:31:22,775 * INFO * com.fredrik.cigarapp.service.CigarService * editCigar * UPDATED Cigar with id: 952
+Changes made:
+Cigar with id: 952 has been updated:
+Name updated from FREDDANS to FREDRIKS
+Brand updated from FREDDANS to FREDRIKS
+Origin updated from SVERIGE to GÖTEBORG
+Duration updated from 10000 min to 10000 min
+Body updated from BIIIIIG to AAAMEEEN
+Length updated from 1535.6 cm to 1535.6 cm
+Handrolled updated from Yes to Yes
+Ring gage updated from 532 to 532
+Status updated from Not Smoked to Not Smoked
+Price updated from 2539 SEK to 2539 SEK
+Boxprice updated from 63.250 SEK to 63.250 SEK
+Boxamount updated from 99 to 99
+Rating updated from 100 to 100
+FavoriteOf updated from  to 
+ImgPath updated from /images/cigar/cigar_placeholder.png to /images/cigar/cigar_placeholder.png
+BrandImagePath updated from /icons/brand/hupmann.png to /icons/brand/hupmann.png
+OriginImagePath updated from /icons/origin/cuba.png to /icons/origin/cuba.png
+ProfilePicture updated from null to /images/cigar/brand/bolivar/belicososfinostorpedo.png
+
+2024-04-10 22:31:29,073 * INFO * com.fredrik.cigarapp.service.CigarService * deleteWithLog * DELETED: FREDRIKS with ID: 952
+
