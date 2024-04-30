@@ -85,25 +85,30 @@ public class CigarController {
     }
 
     // View favorites sorted by name
-    @GetMapping("/favorites")
-    @ResponseBody
-    public ResponseEntity<List<String>> getFavoriteOf() {
-        List<String> favoriteCigars = service.getAllFavoriteOf();
+//    @GetMapping("/favorites")
+//    @ResponseBody
+//    public ResponseEntity<List<String>> getFavoriteOf() {
+//        List<String> favoriteCigars = service.getAllFavoriteOf();
+//
+//        // sort by name:
+//        Collections.sort(favoriteCigars, new Comparator<String>() {
+//            @Override
+//            public int compare(String cigar1, String cigar2) {
+//                String[] part1 = cigar1.split(":");
+//                String[] part2 = cigar2.split(":");
+//
+//                // Compare brand names
+//                return part1[2].trim().compareTo(part2[2].trim());
+//            }
+//        });
+//
+//
+//        return ResponseEntity.ok(favoriteCigars);
+//    }
 
-        // sort by name:
-        Collections.sort(favoriteCigars, new Comparator<String>() {
-            @Override
-            public int compare(String cigar1, String cigar2) {
-                String[] part1 = cigar1.split(":");
-                String[] part2 = cigar2.split(":");
-
-                // Compare brand names
-                return part1[2].trim().compareTo(part2[2].trim());
-            }
-        });
-
-
-        return ResponseEntity.ok(favoriteCigars);
+    @GetMapping("/new/favorites")
+    public ResponseEntity<List<String>> newGetFavoriteOf() {
+        return ResponseEntity.ok(service.newGetFavoritesOf());
     }
 
     // get Cigar by Id in postman
@@ -114,116 +119,113 @@ public class CigarController {
     }
 
     // Edit in postman
-    @PutMapping("/editcigar/{id}")
-    public ResponseEntity<String> editById(@PathVariable Long id, @RequestBody Cigar updatedCigar) {
-        Cigar existingCigar = getCigarById(id);
-
-        StringBuilder responseMessage = new StringBuilder("Cigar with id: " + existingCigar.getId() + " has been updated:");
-
-        if (updatedCigar.getName() != null) {
-            responseMessage.append("\nName updated from " + existingCigar.getName() + " to " + updatedCigar.getName());
-            existingCigar.setName(updatedCigar.getName());
-        }
-        if (updatedCigar.getBrand() != null) {
-            responseMessage.append("\nBrand updated from " + existingCigar.getBrand() + " to " + updatedCigar.getBrand());
-            existingCigar.setBrand(updatedCigar.getBrand());
-        }
-        if (updatedCigar.getOrigin() != null) {
-            responseMessage.append("\nOrigin updated from " + existingCigar.getOrigin() + " to " + updatedCigar.getOrigin());
-            existingCigar.setOrigin(updatedCigar.getOrigin());
-        }
-        if (updatedCigar.getDuration() != null) {
-            responseMessage.append("\nDuration updated from " + existingCigar.getDuration() + " to " + updatedCigar.getDuration());
-            existingCigar.setDuration(updatedCigar.getDuration());
-        }
-        if (updatedCigar.getBody() != null) {
-            responseMessage.append("\nBody updated from " + existingCigar.getBody() + " to " + updatedCigar.getBody());
-            existingCigar.setBody(updatedCigar.getBody());
-        }
-        if (updatedCigar.getLength() != null) {
-            responseMessage.append("\nLength updated from " + existingCigar.getLength() + " to " + updatedCigar.getLength());
-            existingCigar.setLength(updatedCigar.getLength());
-        }
-        if (updatedCigar.getHandRolled() != null) {
-            responseMessage.append("\nHandrolled updated from " + existingCigar.getHandRolled() + " to " + updatedCigar.getHandRolled());
-            existingCigar.setHandRolled(updatedCigar.getHandRolled());
-        }
-        if (updatedCigar.getRingGage() != null) {
-            responseMessage.append("\nRing gage updated from " + existingCigar.getRingGage() + " to " + updatedCigar.getRingGage());
-            existingCigar.setRingGage(updatedCigar.getRingGage());
-        }
-        if (updatedCigar.getStatus() != null) {
-            responseMessage.append("\nStatus updated from " + existingCigar.getStatus() + " to " + updatedCigar.getStatus());
-            existingCigar.setStatus(updatedCigar.getStatus());
-        }
-        if (updatedCigar.getPrice() != null) {
-            responseMessage.append("\nPrice updated from " + existingCigar.getPrice() + " to " + updatedCigar.getPrice());
-            existingCigar.setPrice(updatedCigar.getPrice());
-        }
-        if (updatedCigar.getBoxPrice() != null) {
-            responseMessage.append("\nBoxprice updated from " + existingCigar.getBoxPrice() + " to " + updatedCigar.getBoxPrice());
-            existingCigar.setBoxPrice(updatedCigar.getBoxPrice());
-        }
-        if (updatedCigar.getBoxAmount() != null) {
-            responseMessage.append("\nBoxamount updated from " + existingCigar.getBoxAmount() + " to " + updatedCigar.getBoxAmount());
-            existingCigar.setBoxAmount(updatedCigar.getBoxAmount());
-        }
-        if (updatedCigar.getRating() != null) {
-            responseMessage.append("\nRating updated from " + existingCigar.getRating() + " to " + updatedCigar.getRating());
-            existingCigar.setRating(updatedCigar.getRating());
-        }
-        if (updatedCigar.getFavoriteOf() != null) {
-            responseMessage.append("\nFavoriteOf updated from " + existingCigar.getFavoriteOf() + " to " + updatedCigar.getFavoriteOf());
-            existingCigar.setFavoriteOf(updatedCigar.getFavoriteOf());
-        }
-        if (updatedCigar.getImagePath() != null) {
-            responseMessage.append("\nImgPath updated from " + existingCigar.getImagePath() + " to " + updatedCigar.getImagePath());
-            existingCigar.setImagePath(updatedCigar.getImagePath());
-        }
-        if (updatedCigar.getBrandImagePath() != null) {
-            responseMessage.append("\nBrandImagePath updated from " + existingCigar.getBrandImagePath() + " to " + updatedCigar.getBrandImagePath());
-            existingCigar.setBrandImagePath(updatedCigar.getBrandImagePath());
-        }
-        if (updatedCigar.getOriginImagePath() != null) {
-            responseMessage.append("\nOriginImagePath updated from " + existingCigar.getOriginImagePath() + " to " + updatedCigar.getOriginImagePath());
-            existingCigar.setOriginImagePath(updatedCigar.getOriginImagePath());
-//            force();
-        }
-        if (updatedCigar.getProfilePicture() != null) {
-            responseMessage.append("\nProfilePicture updated from " + existingCigar.getProfilePicture() + " to " + updatedCigar.getProfilePicture());
-            existingCigar.setProfilePicture(updatedCigar.getProfilePicture());
-        }
-
-        service.save(existingCigar);
-        return ResponseEntity.status(HttpStatus.OK).body(responseMessage.toString());
-    }
+//    @PutMapping("/editcigar/{id}")
+//    public ResponseEntity<String> editById(@PathVariable Long id, @RequestBody Cigar updatedCigar) {
+//        Cigar existingCigar = getCigarById(id);
+//
+//        StringBuilder responseMessage = new StringBuilder("Cigar with id: " + existingCigar.getId() + " has been updated:");
+//
+//        if (updatedCigar.getName() != null) {
+//            responseMessage.append("\nName updated from " + existingCigar.getName() + " to " + updatedCigar.getName());
+//            existingCigar.setName(updatedCigar.getName());
+//        }
+//        if (updatedCigar.getBrand() != null) {
+//            responseMessage.append("\nBrand updated from " + existingCigar.getBrand() + " to " + updatedCigar.getBrand());
+//            existingCigar.setBrand(updatedCigar.getBrand());
+//        }
+//        if (updatedCigar.getOrigin() != null) {
+//            responseMessage.append("\nOrigin updated from " + existingCigar.getOrigin() + " to " + updatedCigar.getOrigin());
+//            existingCigar.setOrigin(updatedCigar.getOrigin());
+//        }
+//        if (updatedCigar.getDuration() != null) {
+//            responseMessage.append("\nDuration updated from " + existingCigar.getDuration() + " to " + updatedCigar.getDuration());
+//            existingCigar.setDuration(updatedCigar.getDuration());
+//        }
+//        if (updatedCigar.getBody() != null) {
+//            responseMessage.append("\nBody updated from " + existingCigar.getBody() + " to " + updatedCigar.getBody());
+//            existingCigar.setBody(updatedCigar.getBody());
+//        }
+//        if (updatedCigar.getLength() != null) {
+//            responseMessage.append("\nLength updated from " + existingCigar.getLength() + " to " + updatedCigar.getLength());
+//            existingCigar.setLength(updatedCigar.getLength());
+//        }
+//        if (updatedCigar.getHandRolled() != null) {
+//            responseMessage.append("\nHandrolled updated from " + existingCigar.getHandRolled() + " to " + updatedCigar.getHandRolled());
+//            existingCigar.setHandRolled(updatedCigar.getHandRolled());
+//        }
+//        if (updatedCigar.getRingGage() != null) {
+//            responseMessage.append("\nRing gage updated from " + existingCigar.getRingGage() + " to " + updatedCigar.getRingGage());
+//            existingCigar.setRingGage(updatedCigar.getRingGage());
+//        }
+//        if (updatedCigar.getStatus() != null) {
+//            responseMessage.append("\nStatus updated from " + existingCigar.getStatus() + " to " + updatedCigar.getStatus());
+//            existingCigar.setStatus(updatedCigar.getStatus());
+//        }
+//        if (updatedCigar.getPrice() != null) {
+//            responseMessage.append("\nPrice updated from " + existingCigar.getPrice() + " to " + updatedCigar.getPrice());
+//            existingCigar.setPrice(updatedCigar.getPrice());
+//        }
+//        if (updatedCigar.getBoxPrice() != null) {
+//            responseMessage.append("\nBoxprice updated from " + existingCigar.getBoxPrice() + " to " + updatedCigar.getBoxPrice());
+//            existingCigar.setBoxPrice(updatedCigar.getBoxPrice());
+//        }
+//        if (updatedCigar.getBoxAmount() != null) {
+//            responseMessage.append("\nBoxamount updated from " + existingCigar.getBoxAmount() + " to " + updatedCigar.getBoxAmount());
+//            existingCigar.setBoxAmount(updatedCigar.getBoxAmount());
+//        }
+//        if (updatedCigar.getRating() != null) {
+//            responseMessage.append("\nRating updated from " + existingCigar.getRating() + " to " + updatedCigar.getRating());
+//            existingCigar.setRating(updatedCigar.getRating());
+//        }
+//        if (updatedCigar.getFavoriteOf() != null) {
+//            responseMessage.append("\nFavoriteOf updated from " + existingCigar.getFavoriteOf() + " to " + updatedCigar.getFavoriteOf());
+//            existingCigar.setFavoriteOf(updatedCigar.getFavoriteOf());
+//        }
+//        if (updatedCigar.getImagePath() != null) {
+//            responseMessage.append("\nImgPath updated from " + existingCigar.getImagePath() + " to " + updatedCigar.getImagePath());
+//            existingCigar.setImagePath(updatedCigar.getImagePath());
+//        }
+//        if (updatedCigar.getBrandImagePath() != null) {
+//            responseMessage.append("\nBrandImagePath updated from " + existingCigar.getBrandImagePath() + " to " + updatedCigar.getBrandImagePath());
+//            existingCigar.setBrandImagePath(updatedCigar.getBrandImagePath());
+//        }
+//        if (updatedCigar.getOriginImagePath() != null) {
+//            responseMessage.append("\nOriginImagePath updated from " + existingCigar.getOriginImagePath() + " to " + updatedCigar.getOriginImagePath());
+//            existingCigar.setOriginImagePath(updatedCigar.getOriginImagePath());
+////            force();
+//        }
+//        if (updatedCigar.getProfilePicture() != null) {
+//            responseMessage.append("\nProfilePicture updated from " + existingCigar.getProfilePicture() + " to " + updatedCigar.getProfilePicture());
+//            existingCigar.setProfilePicture(updatedCigar.getProfilePicture());
+//        }
+//
+//        service.save(existingCigar);
+//        return ResponseEntity.status(HttpStatus.OK).body(responseMessage.toString());
+//    }
 
     // Edit cigar
     @PutMapping("/new/editcigar/{id}")
     public ResponseEntity<String> newEditById(@PathVariable Long id, @RequestBody Cigar updatedCigar) {
-        Cigar existingCigar = getCigarById(id);
-
-        return new ResponseEntity<>(service.editCigar(existingCigar, updatedCigar), HttpStatus.CREATED);
+        return new ResponseEntity<>(service.updateCigar(id, updatedCigar), HttpStatus.CREATED);
     }
 
     // Delete in postman
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> deleteCigarById(@PathVariable Long id) {
-        Cigar cigarToDelete = getCigarById(id);
+//    @DeleteMapping("/delete/{id}")
+//    public ResponseEntity<String> deleteCigarById(@PathVariable Long id) {
+//        Cigar cigarToDelete = getCigarById(id);
+//
+//        if (cigarToDelete != null) {
+//            service.delete(cigarToDelete);
+//            return ResponseEntity.ok("Cigar with ID: " + id + " has been deleted");
+//        } else {
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("ERROR: Cigar with id: " + id + ", does not exist");
+//        }
+//    }
 
-        if (cigarToDelete != null) {
-            service.delete(cigarToDelete);
-            return ResponseEntity.ok("Cigar with ID: " + id + " has been deleted");
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("ERROR: Cigar with id: " + id + ", does not exist");
-        }
-    }
-
-    @DeleteMapping("/deleteWithLogger/{id}")
-    public ResponseEntity<String> deleteCigarsByIdWithLog(@PathVariable Long id) {
-        Cigar cigarToDelete = getCigarById(id);
-
-        return ResponseEntity.ok(service.deleteWithLog(cigarToDelete));
+    // New Delete by id
+    @DeleteMapping("/new/deletecigar/{id}")
+    public ResponseEntity<String> newDeleteCigarById(@PathVariable Long id) {
+        return ResponseEntity.ok(service.newDelete(id));
     }
 
 
